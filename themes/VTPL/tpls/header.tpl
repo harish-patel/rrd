@@ -56,7 +56,10 @@
             <div class="line"></div>
         {/if}
     </div>
-
+    {if !$AUTHENTICATED}
+     <div class="clear"></div>
+     <br /><br />
+     {/if}
     {literal}
         <iframe id='ajaxUI-history-iframe' src='index.php?entryPoint=getImage&imageName=blank.png'  title='empty' style='display:none'></iframe>
         <input id='ajaxUI-history-field' type='hidden'>
