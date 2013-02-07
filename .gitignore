@@ -2,6 +2,7 @@
 # Ignore custom .htaccess stuff.
 /.htaccess
 # Ignore large parts of the annoying cache directory without breaking things.
+cache/modules/*
 cache/csv/*
 cache/dashlets/*
 cache/diagnostic/*
@@ -32,3 +33,4 @@ silentUpgrade*.php
 # Logs files can safely be ignored.
 *.log
 nbproject
+upload/*

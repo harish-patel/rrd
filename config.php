@@ -1,5 +1,5 @@
 <?php
-// created: 2013-02-06 11:40:39
+// created: 2013-02-07 16:25:26
 $sugar_config = array (
   'admin_access_control' => false,
   'admin_export_only' => false,
@@ -190,7 +190,7 @@ $sugar_config = array (
   'default_subpanel_tabs' => true,
   'default_swap_last_viewed' => false,
   'default_swap_shortcuts' => false,
-  'default_theme' => 'Sugar5',
+  'default_theme' => 'VTPL',
   'default_time_format' => 'h:ia',
   'default_user_is_admin' => false,
   'default_user_name' => '',
@@ -219,7 +219,7 @@ $sugar_config = array (
     'timeout' => 86400,
   ),
   'js_custom_version' => 1,
-  'js_lang_version' => 3,
+  'js_lang_version' => 4,
   'languages' => 
   array (
     'en_us' => 'English (US)',
@@ -344,4 +344,21 @@ $sugar_config = array (
   'vcal_time' => '2',
   'verify_client_ip' => true,
   'email_xss' => 'YToxMzp7czo2OiJhcHBsZXQiO3M6NjoiYXBwbGV0IjtzOjQ6ImJhc2UiO3M6NDoiYmFzZSI7czo1OiJlbWJlZCI7czo1OiJlbWJlZCI7czo0OiJmb3JtIjtzOjQ6ImZvcm0iO3M6NToiZnJhbWUiO3M6NToiZnJhbWUiO3M6ODoiZnJhbWVzZXQiO3M6ODoiZnJhbWVzZXQiO3M6NjoiaWZyYW1lIjtzOjY6ImlmcmFtZSI7czo2OiJpbXBvcnQiO3M6ODoiXD9pbXBvcnQiO3M6NToibGF5ZXIiO3M6NToibGF5ZXIiO3M6NDoibGluayI7czo0OiJsaW5rIjtzOjY6Im9iamVjdCI7czo2OiJvYmplY3QiO3M6MzoieG1wIjtzOjM6InhtcCI7czo2OiJzY3JpcHQiO3M6Njoic2NyaXB0Ijt9',
+  'disabled_themes' => '',
+  'addAjaxBannedModules' => 
+  array (
+    0 => 'Home',
+    1 => 'Tasks',
+    2 => 'Meetings',
+    3 => 'Notes',
+    4 => 'Leads',
+    5 => 'ProspectLists',
+    6 => 'Opportunities',
+    7 => 'Contacts',
+    8 => 'Bugs',
+    9 => 'Accounts',
+    10 => 'Cases',
+    11 => 'Prospects',
+    12 => 'Calls',
+  ),
 );
