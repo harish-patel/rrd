@@ -31,3 +31,4 @@ custom/working/*
 silentUpgrade*.php
 # Logs files can safely be ignored.
 *.log
+nbproject
