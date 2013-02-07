@@ -631,6 +631,7 @@ div.moduleTitle
 .view tr td input[type=checkbox]
 {
     vertical-align: middle;
+    margin-top: 4px;
 }
 
 .collapsed .panelContainer, .collapsed .collapseLink, .expanded .expandLink { display:none; }
@@ -699,7 +700,7 @@ div.moduleTitle
 {
     font-weight: normal;
     padding: 0 !important;
-    vertical-align: middle;
+    vertical-align: top;
     padding: 3px !important;
 }
 .edit tr td[scope=row]
@@ -3247,7 +3248,8 @@ ul.tablist, ul.subpanelTablist
 ul.tablist li a, ul.subpanelTablist li a
 {
     border-top: 2px solid;
-    border-right: 1px solid;
+    border-right: 2px solid;
+    border-left: 2px solid;
     border-bottom: none;
 }
 ul.tablist li a:hover, ul.subpanelTablist li a:hover
@@ -3525,7 +3527,7 @@ ul.subpanelTablist li a,
 .subpanelTabForm,
 .subpanelTabForm h3
 {
-    font-size: 12px;
+    font-size: 13px;
 }
 .subTabMore 
 {
@@ -4056,19 +4058,23 @@ h5.calSharedUser
 }
 ul.tablist, ul.subpanelTablist
 {
-    border-bottom-color: #abc3d7;
+    border-bottom-color: #CCCCCC;
 }
 ul.tablist li a:hover, 
 ul.subpanelTablist li a:hover
 {
     background: #fafafa;
-    border-color: #abc3d7;
+    border-color: #CCCCCC;
 }
 ul.tablist li a, 
 ul.subpanelTablist li a
 {
     background-color: #fff;
-    border-color: #dddddd;
+    border-color: #eee;
+    -moz-border-radius: 0px 6px 0px 0px;
+    border-radius: 0px 6px 0px 0px;
+    -webkit-border-top-right-radius: 6px;
+    margin-left: 4px;
 }
 ul.tablist li a:link, 
 ul.tablist li a:visited, 
@@ -4087,8 +4093,9 @@ ul.subpanelTablist li a.current:hover
 {
     color: #4f4f4f;
     background: #fff;
-    border-right-color: #abc3d7;
-    border-top-color: #abc3d7;
+    border-right-color: #ccc;
+    border-left-color: #ccc;
+    border-top-color: #ccc;
     border-bottom-color: #fff;
 }
 
@@ -4689,3 +4696,39 @@ ul.clickMenu li ul.subnav li a:hover .showLessArrow, ul.clickMenu li ul.subnav l
 
 div.action_buttons form {float:left;}
 .paginationWrapper { float:right; }
+
+.yui-module.yui-overlay.yui-panel{
+    box-shadow: #444 0px 2px 10px;
+    -moz-box-shadow: #444 0px 2px 10px;
+    -webkit-box-shadow: #444 0px 2px 10px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-color: #98c6ea;
+}
+.yui-module .hd, .yui-panel .hd {
+    background:url(../../../../index.php?entryPoint=getImage&imageName=dp-hd.png) repeat-x;
+    border-bottom: 1px solid #98c6ea;
+    -moz-border-radius: 6px 6px 0px 0px;
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    border-radius: 6px 6px 0px 0px;
+    color: #666;
+    text-shadow: 0 1px #FFFFFF;
+    padding: 3px 8px;
+}
+
+.yui-module .ft, .yui-panel .ft {
+    -moz-border-radius: 0px 0px 6px 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    border-radius: 0px 0px 6px 6px;
+}
+
+.yui-dialog .container-close {
+    top: 6px;
+}
+
+.yui-panel-container.shadow .underlay {
+    background-color: transparent !important;
+}
