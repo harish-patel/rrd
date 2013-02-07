@@ -42,9 +42,9 @@
     <div id="header">
         {include file="_companyLogo.tpl" theme_template=true}
         {if $AUTHENTICATED}
+            {include file="_headerSearch.tpl" theme_template=true}
             {include file="_globalLinks.tpl" theme_template=true}
             {include file="_welcome.tpl" theme_template=true}
-            {include file="_headerSearch.tpl" theme_template=true}
             <div class="clear"></div>
             {if !$AUTHENTICATED}
                 <br /><br />
