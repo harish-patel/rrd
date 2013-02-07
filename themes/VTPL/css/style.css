@@ -275,6 +275,7 @@ th, td
     padding:0 3px 0 5px;
     height: 23px;
     vertical-align: bottom;
+    margin-top: 2px;
 }
 #unified_search_advanced_img{
     cursor:pointer;
@@ -360,7 +361,7 @@ th, td
 }
 div#content
 {
-    padding-top: 10px;  
+    padding-top: 0px;  
     padding-bottom: 10px;
     margin-left: 20px;
     margin-right: 20px;
@@ -577,14 +578,16 @@ div.moduleTitle
 }
 .moduleTitle img
 {
-    margin-right: 3px;
-    margin-top: 3px;
     border: 0;
 }
 .moduleTitle h2
 {
     display: block;
     float: left;
+    color: #666;
+    font-size: 15px;
+    padding-left: 4px;
+    padding-top: 4px;
 }
 
 .moduleTitle h2 span.pointer 
@@ -598,7 +601,7 @@ div.moduleTitle
 {
     display: block;
     float: right;
-    margin-top: 0;
+    margin-top: 6px;
 }
 .moduleTitle span.utils a img
 {
@@ -696,7 +699,7 @@ div.moduleTitle
 {
     font-weight: normal;
     padding: 0 !important;
-    vertical-align: top;
+    vertical-align: middle;
     padding: 3px !important;
 }
 .edit tr td[scope=row]
@@ -804,11 +807,11 @@ table.edit.view {
 }
 .list tr.pagination td table td
 {
-    padding: 4px 0px 4px 10px !important;
+    padding: 4px 0px 4px 4px !important;
 }
 .list tr.pagination td table td button
 {
-  
+
 }
 .list tr.pagination td table td a:link, 
 .list tr.pagination td table td a:visited,
@@ -2562,7 +2565,7 @@ embed
 .dashletPanel .hd .hd-center .dashletToolSet {
     width: 100%;
     text-align: right;
-    visibility:hidden;
+    visibility:visible;
     padding-top: 2px;
 }
 
@@ -2894,7 +2897,7 @@ button, input[type=submit], input[type=reset], input[type=button], .button
 
 .pagination button, .pagination input[type=submit], .pagination input[type=reset], .pagination input[type=button], .pagination .button
 {
-   
+
 } 
 button:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover,
 button:focus, input[type=submit]:focus, input[type=reset]:focus, input[type=button]:focus,
@@ -2921,7 +2924,7 @@ button[selected], input[type=submit][selected], input[type=reset][selected], inp
 
 #sitemapLink 
 {
-    padding-top: 3px;
+    padding-top: 5px;
 }
 #sitemapLinkSpan 
 {
@@ -2929,7 +2932,8 @@ button[selected], input[type=submit][selected], input[type=reset][selected], inp
     border-right:none;
 }
 #search {
-    border-left:1px solid #999;
+    /*    border-left:1px solid #999;*/
+    width: 155px;
 }
 
 /* DetailView/EditView/ListView styles */
@@ -2983,7 +2987,7 @@ table.detail
 /* module title */
 .moduleTitle 
 {
-    padding-bottom: 3px;
+    padding-bottom: 0;
     padding-top: 0;
     margin-bottom: 10px;
     margin-top: 0;
@@ -3191,8 +3195,9 @@ ul.subTabs li a:link, ul.subTabs li a:visited
 a.utilsLink:link, a.utilsLink:visited 
 {
     font-weight: normal;
-    text-decoration: underline;
+    text-decoration: none;
     padding-bottom: 3px;
+    color: #666;
 }
 a.tabFormAdvLink:link, a.tabFormAdvLink:visited, a.tabFormAdvLink:hover 
 {
@@ -3230,6 +3235,7 @@ a.tabFormAdvLink:link, a.tabFormAdvLink:visited, a.tabFormAdvLink:hover
 {
     border: 1px solid;
     font-size: 11px;
+    height: 21px;
 }
 
 
@@ -3273,36 +3279,36 @@ ul.subpanelTablist li a.current, ul.subpanelTablist li a.current:hover
 }*/
 
 .pagination button {
-	border: 0px none;
-	background-color: transparent;
-	background-image: none;
-	padding: 0px;
-	position: relative;
-	height: 24px;
+    border: 0px none;
+    background-color: transparent;
+    background-image: none;
+    padding: 0px;
+    position: relative;
+    height: 24px;
 }
 
 .pagination button[name="listViewNextButton"],.pagination button[name="listViewPrevButton"] {
-	z-index: 1;
+    z-index: 1;
 }
 
 .pagination button[name="listViewEndButton"],.pagination button[title="End"] {
-	left: -10px;
+    left: -10px;
 }
 
 .pagination button[name="listViewStartButton"],.pagination button[title="Start"] {
-	left: 10px;
+    left: 10px;
 }
 
 .pagination button:hover,.pagination button:focus {
-	background-color: transparent;
-        background-image: none;
+    background-color: transparent;
+    background-image: none;
 }
 
 .pagination button[disabled] {
-	border-color: 0px none;
-	background-color: transparent;
-	background-image: none;
-	cursor: default;
+    border-color: 0px none;
+    background-color: transparent;
+    background-image: none;
+    cursor: default;
 }
 
 .pagination button [title="Return to List"]:hover{
@@ -3470,7 +3476,7 @@ input, select, textarea, button
 a.utilsLink:link, 
 a.utilsLink:visited
 {
-    font-size: 11px;
+    font-size: 12px;
 }
 a.tabFormAdvLink:link, 
 a.tabFormAdvLink:visited 
@@ -3940,10 +3946,6 @@ table.detail
 }
 
 /* misc links */
-a.utilsLink:link, a.utilsLink:visited 
-{
-    color: #0b578f;
-}
 a.tabFormAdvLink:link, a.tabFormAdvLink:visited 
 {
     color: #444444;
