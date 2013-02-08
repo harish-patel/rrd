@@ -198,9 +198,9 @@ th, td
 /* layout the header elements */
 #header div.line 
 {
-    height: 4px;
+/*    height: 4px;
     margin: 0;
-    padding: 0;
+    padding: 0;*/
 }
 #header ul li
 {
@@ -524,14 +524,10 @@ ul.cssmenu li a
 #subModuleList li.subTabMore:hover ul.cssmenu{
     visibility:visible;
 }
-#subModuleList
-{
-    padding:0.4em 0 0.3em 0;
-}
 #subModuleList span a
 {
     text-decoration: none;
-    padding: 0.2em 0.5em 0.3em 0.5em;
+    padding: 0.2em 0.5em;
     margin: 0 -3px 0 0;
     white-space:nowrap;
 }
@@ -2959,9 +2955,9 @@ button[selected], input[type=submit][selected], input[type=reset][selected], inp
 }
 /* header */
 #header div.line {
-    height: 2px;
+/*    height: 2px;
     border-bottom: 2px solid;
-    color:#0046ad;
+    color:#0046ad;*/
 }
 
 #sitemapLink 
@@ -3095,12 +3091,13 @@ ul.subTabs li a:link, ul.subTabs li a:visited
 #moduleList ul li
 {
     float: left;
-    margin: 2px 0;
+    margin: 2px 0 0px;
     display:block;
     font-weight: bold;
     padding:8px 6px 7px 2px;
     border-left: 1px solid #cccccc;
 }
+
 #moduleList > ul > li
 {
     background-repeat:no-repeat;
@@ -3128,25 +3125,31 @@ ul.subTabs li a:link, ul.subTabs li a:visited
     font-weight: bold;
     padding: 8px 5px 6px 5px;
     background-position: top center;		
-    border-bottom: 2px solid;
     margin: 0 !important;
     border-left: 0 !important;
+    border-bottom: 1px solid #386188;
 }	
 #moduleList ul li span.currentTabLeft 
 {
     background-position: top left;
-    border-bottom: 2px solid;
     margin-right: 0 !important;
     border-left: 0 !important;
     padding:8px 2px 6px;
+    -moz-border-top-left-radius: 7px;
+    border-top-left-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+    border-bottom: 1px solid #386188;
 }		
 #moduleList ul li span.currentTabRight 
 {
     background-position: top right;
-    border-bottom: 2px solid;
     margin-left: 0 !important;
     border-left: 0 !important;
     padding:8px 2px 6px;
+    -moz-border-top-right-radius: 7px;
+    border-top-right-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    border-bottom: 1px solid #386188;
 }
 #moduleList ul li a:link, 
 #moduleList ul li a:visited 
@@ -3165,7 +3168,7 @@ ul.subTabs li a:link, ul.subTabs li a:visited
 }
 #subModuleList
 {
-    padding:0.4em 0 0.3em 1em;
+    padding:7px 0 9px 10px;
     border-bottom: none;
     border-top: 2px solid;
 }
@@ -3189,10 +3192,7 @@ ul.subTabs li a:link, ul.subTabs li a:visited
     text-decoration: none;
     border-left:1px solid;
 }
-.headerList a:hover 
-{
-    background: #fff;
-}
+
 .headerList a:hover span
 {
     text-decoration: underline;
@@ -3424,7 +3424,10 @@ input, select, textarea, button
 {
     font-size: 12px;
 }
-
+#moduleList ul li span 
+{
+    font-size: 13px;
+}
 /* left column and the hidden list menu */
 #leftColumn h3, #HideMenu h3
 {
@@ -3738,18 +3741,17 @@ textarea
 
 /* header */
 #header div.line {
-    background-color:#4e8ccf;
-    border-bottom-color: #0046ad;
-    color:#0046ad;
+    /*    background-color:#4e8ccf;
+        border-bottom-color: #0046ad;
+        color:#0046ad;*/
 }
 
 /* for the main screen navigation tabs */
 #moduleList 
 {
-        background-image : url('../../../../index.php?entryPoint=getImage&imageName=tabRowBg.png');
-        background-repeat: repeat-x;
-        border-bottom-color: #0046ad;
-        padding: 3px;
+    background-image : url('../../../../index.php?entryPoint=getImage&imageName=tabRowBg.png');
+    background-repeat: repeat-x;
+    padding: 4px;
 }
 #moduleList > ul > li
 {
@@ -3774,14 +3776,14 @@ textarea
 #moduleList ul li span.currentTabRight, 
 #moduleList ul li span.currentTab 
 {
-    /*    background-image : url('../../../../index.php?entryPoint=getImage&imageName=currentTab.gif');
-        background-repeat: no-repeat;
-        border-bottom-color: #4e8ccf;*/
+    background-image:url('../../../../index.php?entryPoint=getImage&themeName=VTPL&imageName=bg-1.jpg');
+    background-repeat: repeat-x
+
 }
 #subModuleList 
 {
-    background-color:#4e8ccf;
-    border-color:#0046ad;
+    background-color:#386188;
+    border-color:#406E99;
 }
 #subModuleList span a
 {
@@ -3795,28 +3797,28 @@ textarea
 }
 #subModuleList span a:hover
 {
-    background-color:#0046ad;
-    border-left-color:#0046ad;
+    /*    background-color:#0046ad;
+        border-left-color:#0046ad;*/
 }
 
 /* lists in the header */
 .headerList 
 {
     color: #444;
-    border-top-color:#0046ad;
-    border-bottom-color: #abc3d7;
-    background-color: #f4f9fc;
+    background-color: #EBEBED;
+    border-bottom-color: #CCCCCC ;
+    border-top-color: #CCCCCC ;
 }
 .headerList a:link, 
 .headerList a:visited, 
 .headerList a 
 {
     color: #444444;	
-    border-color: #CBDAE6;
+    border-color: #C3C3C3;
 }
 .headerList a:hover
 {
-    color: #0b578f;	
+    color: #0b578f;
 }
 /* for lists of items in the left column ( such as the shortcuts or last view items lists ) */
 .leftList ul, 
