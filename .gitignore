@@ -19,6 +19,10 @@ cache/smarty/cache/*
 cache/smarty/templates_c/*
 cache/themes/*
 cache/xml/*
+cache/htmlclean/*
+cache/images/*
+cache/*.html
+cache/layout/*
 # Ignore some files and directories from the custom directory.
 custom/history/*
 # custom/modulebuilder/*
