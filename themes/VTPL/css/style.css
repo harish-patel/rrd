@@ -658,9 +658,10 @@ div.moduleTitle
 {
     border: none; 
     vertical-align: top;
-    padding: 5px 6px 5px 6px;
+    padding: 6px;
     vertical-align: top;
     text-align: left;
+    line-height: 18px;
 }
 .detail tr td[scope=row] 
 {
@@ -953,13 +954,22 @@ table.edit.view {
 }
 
 /* detail view */
-.detail.view,
-.detail table,
-table.detail
+.detail.view 
+{
+    box-shadow: #ccc 0px 0px 10px;
+    -moz-box-shadow: #ccc 0px 0px 10px;
+    -webkit-box-shadow: #ccc 0px 0px 10px;
+}
+
+.detail.view, .detail table, table.detail
 {
     padding: 0;
+}
+
+.detail table, table.detail {
     width: 100%;
 }
+
 .detail tr.pagination td
 {
     padding-top: 4px;
@@ -3840,6 +3850,7 @@ ul.subpanelTablist li a.activeSubTab:hover
 .list tr.pagination td table td span.pageNumbers
 {
     color: #666666;
+    font-size: 13px;
 }
 .list
 {
@@ -3869,12 +3880,19 @@ table.detail
 }
 .detail tr td[scope="row"] 
 {
-    color: #000000;
-    background-color: #f6f6f6;
-    border-color: #cbdae6;
+    color: #888;
+    background-color: #eee;
+    border-color: #ccc;
 }
 .detail h4 {
-    color: #444444;
+    font-weight: bold; 
+    margin: 0px;
+    text-align: left;
+    border: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    background-color: #eee;
 }
 .detail tr th 
 {
@@ -4171,12 +4189,12 @@ ul.tablist li a.current:link, ul.tablist li a.current:visited, ul.tablist li a.c
 }
 
 .yui-navset .yui-nav, .yui-navset .yui-navset-top .yui-nav, .yui-layout .yui-layout-hd {
-    background:#DDD url('../../../../index.php?entryPoint=getImage&themeName=Sugar55&imageName=sugar-yui-sprites.png') repeat-x scroll 0 0;
-    border-color: #ABC3D7;
+    background:transparent url('../../../../index.php?entryPoint=getImage&themeName=VTPL&imageName=sugar-yui-sprites.png') repeat-x scroll 0 0;
+    border-color: #c3c3c3;
 }
 
 .yui-layout .yui-layout-unit div.yui-layout-bd, .yui-navset .yui-content, .yui-navset .yui-navset-top .yui-content {
-    border-color:#ABC3D7;
+    border-color:#c3c3c3;
 }
 
 .yuimenuitem-hassubmenu > a{
@@ -4247,9 +4265,9 @@ div#chartDashlets
 /* miscellaneaous 508 classes */
 .detail508 tr td[scope="col"]
 {
-    background-color: #F6F6F6;
-    border-color: #CBDAE6;
-    color: #000000;
+    background-color: #EEEEEE;
+    border-color: #CCCCCC;
+    color: #888888;
     text-align: right;
     white-space: nowrap;
 }
@@ -4731,4 +4749,103 @@ div.action_buttons form {float:left;}
 
 .yui-panel-container.shadow .underlay {
     background-color: transparent !important;
+}
+
+/* for edit and detail views */
+.edit.view th:first-child,.detail.view th:first-child {
+    -moz-border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0px 0px;
+    -webkit-border-topr-right-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+}
+
+.edit.view h4:first-child,.detail.view h4:first-child {
+    -moz-border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0px 0px;
+    -webkit-border-topr-right-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+}
+
+.edit.view > tr:first-child > td:first-child,.detail.view tr:first-child > td:first-child  {
+    -moz-border-radius: 6px 0px 0px 0px;
+    border-radius: 6px 0px 0px 0px;
+    -webkit-border-top-left-radius: 6px;
+}
+
+.edit.view > tr:first-child td:last-child,.detail.view tr:first-child td:last-child   {
+    -moz-border-radius: 0px 6px 0px 0px;
+    border-radius: 0px 6px 0px 0px;
+    -webkit-border-top-right-radius: 6px;
+}
+
+.edit.view > tr:last-child > td:first-child,.detail.view tr:last-child > td:first-child {
+    -moz-border-radius: 0px 0px 0px 6px;
+    border-radius: 0px 0px 0px 6px;
+    -webkit-border-bottom-left-radius: 6px;
+}
+.edit.view > tr:last-child td:last-child ,.detail.view tr:last-child td:last-child{
+    -moz-border-radius: 0px 0px 6px 0px;
+    border-radius: 0px 0px 6px 0px;
+    -webkit-border-bottom-right-radius: 6px;
+}
+
+.formHeader h3 
+{
+    font-size: 14px;
+    color: #666;
+}
+
+span.id-ff button {
+    font-size: 10px; 
+    padding:3px 0px 0px 0px;
+    margin-top: -8px\9;
+    height: 23px\9;
+}
+span.id-ff button img{
+    width: 14px;
+    height: 14px;
+}
+
+span.id-ff button#btn_vCardButton img{
+    width: 16px;
+    height: 11px;
+}
+
+span.id-ff button.button.btn_copy img{
+    width: 14px;
+    height: 15px;
+}
+
+span.id-ff.multiple button{
+    margin-top: -4px;
+    *margin-top: -8px;
+}
+
+span.id-ff.multiple.ownline button{
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+
+span.id-ff.multiple button.button.firstChild{
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 0px;
+    border-radius-topright: 0px;
+    border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-top-radius: 0px;
+}
+
+span.id-ff.multiple button.button.lastChild{
+    -moz-border-radius-topleft: 0px;  
+    -moz-border-radius-bottomleft: 0px; 
+    border-radius-topleft: 0px;  
+    border-radius-bottomleft: 0px; 
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-top-left-radius: 0px;
+
+    border-left-color: #eee;
+}
+
+.id-ff-remove {
+    margin-top: 1px;
 }
