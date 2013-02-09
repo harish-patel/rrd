@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,19 +33,23 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/SugarFields/Fields/Base/SugarFieldBase.php');
 
-class SugarFieldText extends SugarFieldBase {
+class SugarFieldText extends SugarFieldBase
+{
 
-	function getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex) {
-		$displayParams['nl2br'] = true;
-		$displayParams['htmlescape'] = true;
-		$displayParams['url2html'] = true;
-		return parent::getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex);
+    function getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex)
+    {
+        $displayParams['nl2br'] = true;
+        $displayParams['htmlescape'] = true;
+        $displayParams['url2html'] = true;
+        return parent::getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex);
     }
-    function getClassicEditView($field_id='description', $value='', $prefix='', $rich_text=false, $maxlength='', $tabindex=1, $cols=80, $rows=4) {
+
+    function getClassicEditView($field_id = 'description', $value = '', $prefix = '', $rich_text = false, $maxlength = '', $tabindex = 1, $cols = 80, $rows = 4)
+    {
 
         $this->ss->assign('prefix', $prefix);
         $this->ss->assign('field_id', $field_id);
@@ -59,19 +64,24 @@ class SugarFieldText extends SugarFieldBase {
 
 
         $this->ss->assign('displayParams', $displayParams);
-		if(isset($GLOBALS['current_user'])) {
-			$height = $GLOBALS['current_user']->getPreference('text_editor_height');
-			$width = $GLOBALS['current_user']->getPreference('text_editor_width');
-			$height = isset($height) ? $height : '300px';
-	        $width = isset($width) ? $width : '95%';
-			$this->ss->assign('RICH_TEXT_EDITOR_HEIGHT', $height);
-			$this->ss->assign('RICH_TEXT_EDITOR_WIDTH', $width);
-		} else {
-			$this->ss->assign('RICH_TEXT_EDITOR_HEIGHT', '100px');
-			$this->ss->assign('RICH_TEXT_EDITOR_WIDTH', '95%');
-		}
+        if (isset($GLOBALS['current_user']))
+        {
+            $height = $GLOBALS['current_user']->getPreference('text_editor_height');
+            $width = $GLOBALS['current_user']->getPreference('text_editor_width');
+            $height = isset($height) ? $height : '300px';
+            $width = isset($width) ? $width : '95%';
+            $this->ss->assign('RICH_TEXT_EDITOR_HEIGHT', $height);
+            $this->ss->assign('RICH_TEXT_EDITOR_WIDTH', $width);
+        }
+        else
+        {
+            $this->ss->assign('RICH_TEXT_EDITOR_HEIGHT', '100px');
+            $this->ss->assign('RICH_TEXT_EDITOR_WIDTH', '95%');
+        }
 
-		return $this->ss->fetch($this->findTemplate('ClassicEditView'));
+        return $this->ss->fetch($this->findTemplate('ClassicEditView'));
     }
+
 }
+
 ?>

@@ -6942,4 +6942,37 @@
     'rhs_key' => 'assigned_user_id',
     'relationship_type' => 'one-to-many',
   ),
+  'ft_fieldtrial_modified_user' => 
+  array (
+    'name' => 'ft_fieldtrial_modified_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'ft_FieldTrial',
+    'rhs_table' => 'ft_fieldtrial',
+    'rhs_key' => 'modified_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
+  'ft_fieldtrial_created_by' => 
+  array (
+    'name' => 'ft_fieldtrial_created_by',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'ft_FieldTrial',
+    'rhs_table' => 'ft_fieldtrial',
+    'rhs_key' => 'created_by',
+    'relationship_type' => 'one-to-many',
+  ),
+  'ft_fieldtrial_assigned_user' => 
+  array (
+    'name' => 'ft_fieldtrial_assigned_user',
+    'lhs_module' => 'Users',
+    'lhs_table' => 'users',
+    'lhs_key' => 'id',
+    'rhs_module' => 'ft_FieldTrial',
+    'rhs_table' => 'ft_fieldtrial',
+    'rhs_key' => 'assigned_user_id',
+    'relationship_type' => 'one-to-many',
+  ),
 );

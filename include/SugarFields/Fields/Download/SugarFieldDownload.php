@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,17 +33,21 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/SugarFields/Fields/Base/SugarFieldBase.php');
 
-class SugarFieldDownload extends SugarFieldBase {
-   
-	function getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex) {
-      
+class SugarFieldDownload extends SugarFieldBase
+{
+
+    function getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex)
+    {
+
         $vardef['value'] = urlencode(basename($vardef['value']));
         $this->setup($parentFieldArray, $vardef, $displayParams, $tabindex);
         return $this->fetch($this->findTemplate('DetailView.tpl'));
     }
+
 }
+
 ?>

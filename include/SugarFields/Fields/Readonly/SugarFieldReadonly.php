@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,14 +33,18 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/SugarFields/Fields/Base/SugarFieldBase.php');
 
-class SugarFieldReadonly extends SugarFieldBase {
-    function getEditViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex) {
-    	return $this->getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex);
+class SugarFieldReadonly extends SugarFieldBase
+{
+
+    function getEditViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex)
+    {
+        return $this->getDetailViewSmarty($parentFieldArray, $vardef, $displayParams, $tabindex);
     }
-    
+
 }
+
 ?>

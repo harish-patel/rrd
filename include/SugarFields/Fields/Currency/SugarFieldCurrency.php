@@ -1,6 +1,6 @@
 <?php
 
-/*********************************************************************************
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,62 +33,70 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 require_once('include/SugarFields/Fields/Float/SugarFieldFloat.php');
 
-class SugarFieldCurrency extends SugarFieldFloat 
+class SugarFieldCurrency extends SugarFieldFloat
 {
-    function getListViewSmarty($parentFieldArray, $vardef, $displayParams, $col) {
+
+    function getListViewSmarty($parentFieldArray, $vardef, $displayParams, $col)
+    {
         $tabindex = 1;
-    	$this->setup($parentFieldArray, $vardef, $displayParams, $tabindex, false);
-        
+        $this->setup($parentFieldArray, $vardef, $displayParams, $tabindex, false);
+
         $this->ss->left_delimiter = '{';
         $this->ss->right_delimiter = '}';
-        $this->ss->assign('col',strtoupper($vardef['name']));        
-	    if(is_object($parentFieldArray) ){
-            if(!empty($parentFieldArray->currency_id)) {
-                $this->ss->assign('currency_id',$parentFieldArray->currency_id);
+        $this->ss->assign('col', strtoupper($vardef['name']));
+        if (is_object($parentFieldArray))
+        {
+            if (!empty($parentFieldArray->currency_id))
+            {
+                $this->ss->assign('currency_id', $parentFieldArray->currency_id);
             }
-	    } else if (!empty($parentFieldArray['CURRENCY_ID'])) {
-	    	$this->ss->assign('currency_id',$parentFieldArray['CURRENCY_ID']);
-	    } else if (!empty($parentFieldArray['currency_id'])) {
-	    	$this->ss->assign('currency_id',$parentFieldArray['currency_id']);
-	    }
+        }
+        else if (!empty($parentFieldArray['CURRENCY_ID']))
+        {
+            $this->ss->assign('currency_id', $parentFieldArray['CURRENCY_ID']);
+        }
+        else if (!empty($parentFieldArray['currency_id']))
+        {
+            $this->ss->assign('currency_id', $parentFieldArray['currency_id']);
+        }
         return $this->fetch($this->findTemplate('ListView'));
     }
-    
+
     /**
      * @see SugarFieldBase::importSanitize()
      */
     public function importSanitize(
-        $value,
-        $vardef,
-        $focus,
-        ImportFieldSanitize $settings
-        )
+    $value, $vardef, $focus, ImportFieldSanitize $settings
+    )
     {
-        $value = str_replace($settings->currency_symbol,"",$value);
-        
-        return $settings->float($value,$vardef,$focus);
+        $value = str_replace($settings->currency_symbol, "", $value);
+
+        return $settings->float($value, $vardef, $focus);
     }
 
     /**
-	 * format the currency field based on system locale values for currency
+     * format the currency field based on system locale values for currency
      * Note that this may be different from the precision specified in the vardefs.
-	 * @param string $rawfield value of the field
+     * @param string $rawfield value of the field
      * @param string $somewhere vardef for the field being processed
-	 * @return number formatted according to currency settings
-	 */
-    public function formatField($rawField, $vardef){
+     * @return number formatted according to currency settings
+     */
+    public function formatField($rawField, $vardef)
+    {
         // for currency fields, use the user or system precision, not the precision in the vardef
         //this is achived by passing in $precision as null
         $precision = null;
 
-        if ( $rawField === '' || $rawField === NULL ) {
+        if ($rawField === '' || $rawField === NULL)
+        {
             return '';
         }
-        return format_number($rawField,$precision,$precision);
+        return format_number($rawField, $precision, $precision);
     }
+
 }

@@ -1,109 +1,109 @@
 {*
 /*********************************************************************************
- * SugarCRM Community Edition is a customer relationship management program developed by
- * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
- * 
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Affero General Public License version 3 as published by the
- * Free Software Foundation with the addition of the following permission added
- * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
- * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
- * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- * 
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
- * details.
- * 
- * You should have received a copy of the GNU Affero General Public License along with
- * this program; if not, see http://www.gnu.org/licenses or write to the Free
- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA.
- * 
- * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
- * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- * 
- * The interactive user interfaces in modified source and object code versions
- * of this program must display Appropriate Legal Notices, as required under
- * Section 5 of the GNU Affero General Public License version 3.
- * 
- * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
- * these Appropriate Legal Notices must retain the display of the "Powered by
- * SugarCRM" logo. If the display of the logo is not reasonably feasible for
- * technical reasons, the Appropriate Legal Notices must display the words
- * "Powered by SugarCRM".
- ********************************************************************************/
+* SugarCRM Community Edition is a customer relationship management program developed by
+* SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
+* 
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+* OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+* 
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+* details.
+* 
+* You should have received a copy of the GNU Affero General Public License along with
+* this program; if not, see http://www.gnu.org/licenses or write to the Free
+* Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+* 02110-1301 USA.
+* 
+* You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+* SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+* 
+* The interactive user interfaces in modified source and object code versions
+* of this program must display Appropriate Legal Notices, as required under
+* Section 5 of the GNU Affero General Public License version 3.
+* 
+* In accordance with Section 7(b) of the GNU Affero General Public License version 3,
+* these Appropriate Legal Notices must retain the display of the "Powered by
+* SugarCRM" logo. If the display of the logo is not reasonably feasible for
+* technical reasons, the Appropriate Legal Notices must display the words
+* "Powered by SugarCRM".
+********************************************************************************/
 
 *}
 
 {if !isset($config.enable_autocomplete) || $config.enable_autocomplete==false}
 
-	<input type="hidden" id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect"
-	name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect" value="true">
-	{multienum_to_array string={{sugarvar key='value' string=true}} default={{sugarvar key='default' string=true}} assign="values"}
-	<select id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
-	name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}[]"
-	multiple="true" size='{{$displayParams.size|default:6}}' style="width:150" title='{{$vardef.help}}' tabindex="{{$tabindex}}" {{$displayParams.field}} 
-    {{if !empty($displayParams.accesskey)}} accesskey='{{$displayParams.accesskey}}' {{/if}}
- 	{{if isset($displayParams.javascript)}}{{$displayParams.javascript}}{{/if}}>
-	{html_options options={{sugarvar key='options' string=true}} selected=$values}
-	</select>
+    <input type="hidden" id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect"
+           name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect" value="true">
+    {multienum_to_array string={{sugarvar key='value' string=true}} default={{sugarvar key='default' string=true}} assign="values"}
+    <select id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
+            name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}[]"
+            multiple="true" size='{{$displayParams.size|default:6}}' style="width:150" title='{{$vardef.help}}' tabindex="{{$tabindex}}" {{$displayParams.field}} 
+            {{if !empty($displayParams.accesskey)}} accesskey='{{$displayParams.accesskey}}' {{/if}}
+            {{if isset($displayParams.javascript)}}{{$displayParams.javascript}}{{/if}}>
+        {html_options options={{sugarvar key='options' string=true}} selected=$values}
+    </select>
 
 {else}
 
-	{assign var="field_options" value={{sugarvar key='options' string="true"}} }
-	{capture name="field_val"}{{sugarvar key='value'}}{/capture}
-	{assign var="field_val" value=$smarty.capture.field_val}
-	{capture name="ac_key"}{{sugarvar key='name'}}{/capture}
-	{assign var="ac_key" value=$smarty.capture.ac_key}
+    {assign var="field_options" value={{sugarvar key='options' string="true"}} }
+{capture name="field_val"}{{sugarvar key='value'}}{/capture}
+    {assign var="field_val" value=$smarty.capture.field_val}
+{capture name="ac_key"}{{sugarvar key='name'}}{/capture}
+    {assign var="ac_key" value=$smarty.capture.ac_key}
 
-	{{if empty($vardef.autocomplete_ajax)}}
-		<input type="hidden" id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect"
-		name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect" value="true">
-		{multienum_to_array string={{sugarvar key='value' string=true}} default={{sugarvar key='default' string=true}} assign="values"}
-		<select style='display:none' id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
-		name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}[]"
-		multiple="true" size='{{$displayParams.size|default:6}}' style="width:150" title='{{$vardef.help}}' tabindex="{{$tabindex}}" {{$displayParams.field}} 
-		{{if !empty($displayParams.accesskey)}} accesskey='{{$displayParams.accesskey}}' {{/if}}
-        {{if isset($displayParams.javascript)}}{{$displayParams.javascript}}{{/if}}>
-		{html_options options={{sugarvar key='options' string=true}} selected=$values}
-		</select>
+    {{if empty($vardef.autocomplete_ajax)}}
+    <input type="hidden" id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect"
+           name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}_multiselect" value="true">
+    {multienum_to_array string={{sugarvar key='value' string=true}} default={{sugarvar key='default' string=true}} assign="values"}
+    <select style='display:none' id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
+            name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}[]"
+            multiple="true" size='{{$displayParams.size|default:6}}' style="width:150" title='{{$vardef.help}}' tabindex="{{$tabindex}}" {{$displayParams.field}} 
+            {{if !empty($displayParams.accesskey)}} accesskey='{{$displayParams.accesskey}}' {{/if}}
+            {{if isset($displayParams.javascript)}}{{$displayParams.javascript}}{{/if}}>
+        {html_options options={{sugarvar key='options' string=true}} selected=$values}
+    </select>
 
-		<input
-	    id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
-	    name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
-	    size="60"
-	    type="text" style="vertical-align: top;">
-	{{else}}
-		<input type="hidden"
-		    id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
-		    name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
-		    value="{{sugarvar key='value'}}">
+    <input
+        id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
+        name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
+        size="60"
+        type="text" style="vertical-align: top;">
+    {{else}}
+    <input type="hidden"
+           id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
+           name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}"
+           value="{{sugarvar key='value'}}">
 
-		<input
-		    id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
-		    name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
-		    size="60"
-		    type="text" style="vertical-align: top;">
-	{{/if}}
+    <input
+        id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
+        name="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
+        size="60"
+        type="text" style="vertical-align: top;">
+    {{/if}}
 
-	<span class="id-ff multiple">
-	    <button type="button">
-	    	<img src="{sugar_getimagepath file="id-ff-down.png"}" id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-image">
-	    	</button>
-	    	<button type="button"
-	        id="btn-clear-{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
-	        title="Clear"
-	        onclick="SUGAR.clearRelateField(this.form, '{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input', '{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}};');SUGAR.AutoComplete.{$ac_key}.inputNode.updateHidden()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
-	</span>
+    <span class="id-ff multiple">
+        <button type="button">
+            <img src="{sugar_getimagepath file="id-ff-down.png"}" id="{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-image">
+        </button>
+        <button type="button"
+                id="btn-clear-{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input"
+                title="Clear"
+                onclick="SUGAR.clearRelateField(this.form, '{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input', '{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}};');SUGAR.AutoComplete.{$ac_key}.inputNode.updateHidden()"><img src="{sugar_getimagepath file="id-ff-clear.png"}"></button>
+    </span>
 
-	{literal}
-	<script>
+    {literal}
+        <script>
 	SUGAR.AutoComplete.{/literal}{$ac_key}{literal} = [];
-	{/literal}
+        {/literal}
 
-	{{if empty($vardef.autocomplete_ajax)}}
-		{literal}
+        {{if empty($vardef.autocomplete_ajax)}}
+        {literal}
 		YUI().use('datasource', 'datasource-jsonschema', function (Y) {
 					SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds = new Y.DataSource.Function({
 					    source: function (request) {
@@ -116,9 +116,9 @@
 					    }
 					});
 				});
-		{/literal}
-	{{else}}
-		{literal}
+        {/literal}
+        {{else}}
+        {literal}
 		// Create a new YUI instance and populate it with the required modules.
 		YUI().use('datasource', 'datasource-jsonschema', function (Y) {
 			// DataSource is available and ready for use.
@@ -133,55 +133,55 @@
 				}
 			});
 		});
-		{/literal}
-	{{/if}}
+        {/literal}
+        {{/if}}
 
-	{literal}
+        {literal}
 	YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters","node-event-simulate", function (Y) {
-		{/literal}
+        {/literal}
 		
-	    SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input');
-	    SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-image');
-	    SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}');
+            SUGAR.AutoComplete.{$ac_key}.inputNode = Y.one('#{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-input');
+            SUGAR.AutoComplete.{$ac_key}.inputImage = Y.one('#{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}-image');
+            SUGAR.AutoComplete.{$ac_key}.inputHidden = Y.one('#{{if empty($displayParams.idName)}}{{sugarvar key='name'}}{{else}}{{$displayParams.idName}}{{/if}}');
 
-		{{if empty($vardef.autocomplete_ajax)}}
-			SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
-			SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
-			SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
-			if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
-				{/literal}
-				SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-				SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
-				{literal}
+        {{if empty($vardef.autocomplete_ajax)}}
+            SUGAR.AutoComplete.{$ac_key}.minQLen = 0;
+            SUGAR.AutoComplete.{$ac_key}.queryDelay = 0;
+            SUGAR.AutoComplete.{$ac_key}.numOptions = {$field_options|@count};
+            if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 300) {literal}{
+        {/literal}
+                    SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+                    SUGAR.AutoComplete.{$ac_key}.queryDelay = 200;
+            {literal}
 			}
-			{/literal}
-			if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
-				{/literal}
-				SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-				SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
-				{literal}
+            {/literal}
+                    if(SUGAR.AutoComplete.{$ac_key}.numOptions >= 3000) {literal}{
+            {/literal}
+                            SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+                            SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
+                {literal}
 			}
-			{/literal}
-		{{else}}
-			SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
-			SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
-		{{/if}}
+                {/literal}
+                {{else}}
+                            SUGAR.AutoComplete.{$ac_key}.minQLen = 1;
+                            SUGAR.AutoComplete.{$ac_key}.queryDelay = 500;
+                {{/if}}
 		
-		{{if empty($vardef.autocomplete_ajax)}}
-		{literal}
+                {{if empty($vardef.autocomplete_ajax)}}
+                {literal}
 	    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
 	        activateFirstItem: true,
 	        allowTrailingDelimiter: true,
-			{/literal}
-	        minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
-	        queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
-	        queryDelimiter: ',',
-	        zIndex: 99999,
+                {/literal}
+                            minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
+                            queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
+                            queryDelimiter: ',',
+                            zIndex: 99999,
 
-			{{if !empty($vardef.autocomplete_ajax)}}
-				requestTemplate: '&options={{$vardef.autocomplete_options}}&q={literal}{query}{/literal}',
-			{{/if}}
-			{literal}
+                {{if !empty($vardef.autocomplete_ajax)}}
+                            requestTemplate: '&options={{$vardef.autocomplete_options}}&q={literal}{query}{/literal}',
+                {{/if}}
+                {literal}
 			source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
 			
 	        resultTextLocator: 'text',
@@ -203,17 +203,17 @@
 	            });
 	        }]
 	    });
-		{/literal}{{else}}{literal}
+                {/literal}{{else}}{literal}
 			SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.plug(Y.Plugin.AutoComplete, {
 	        activateFirstItem: true,
 	        allowTrailingDelimiter: true,
-			{/literal}
-	        minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
-	        queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
-	        queryDelimiter: ',',
-	        zIndex: 99999,
-				requestTemplate: '&options={{$vardef.autocomplete_options}}&q={literal}{query}{/literal}',
-			{literal}
+                    {/literal}
+                                minQueryLength: SUGAR.AutoComplete.{$ac_key}.minQLen,
+                                queryDelay: SUGAR.AutoComplete.{$ac_key}.queryDelay,
+                                queryDelimiter: ',',
+                                zIndex: 99999,
+                                requestTemplate: '&options={{$vardef.autocomplete_options}}&q={literal}{query}{/literal}',
+                    {literal}
 			source: SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.ds,
 			
 	        resultTextLocator: 'text',
@@ -239,7 +239,7 @@
 	            });
 	        }]
 	    });
-		{/literal}{{/if}}{literal}
+                    {/literal}{{/if}}{literal}
 		if({/literal}SUGAR.AutoComplete.{$ac_key}.minQLen{literal} == 0){
 		    // expand the dropdown options upon focus
 		    SUGAR.AutoComplete.{/literal}{$ac_key}{literal}.inputNode.on('focus', function () {
@@ -420,6 +420,6 @@
 		    });
 		}
 	});
-	</script>
-	{/literal}
-{/if}
+                        </script>
+                    {/literal}
+                    {/if}
