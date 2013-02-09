@@ -1,6 +1,8 @@
 <?php
-if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,14 +35,13 @@ if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 $dictionary['Document'] = array('table' => 'documents',
     'unified_search' => true,
     'full_text_search' => true,
     'unified_search_default_enabled' => true,
     'fields' => array(
-
         'document_name' =>
         array(
             'name' => 'document_name',
@@ -108,7 +109,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'docUrl' => 'doc_url',
             'docId' => 'doc_id',
         ),
-
         'active_date' =>
         array(
             'name' => 'active_date',
@@ -118,14 +118,12 @@ $dictionary['Document'] = array('table' => 'documents',
             'required' => true,
             'display_default' => 'now',
         ),
-
         'exp_date' =>
         array(
             'name' => 'exp_date',
             'vname' => 'LBL_DOC_EXP_DATE',
             'type' => 'date',
         ),
-
         'category_id' =>
         array(
             'name' => 'category_id',
@@ -135,7 +133,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'options' => 'document_category_dom',
             'reportable' => true,
         ),
-
         'subcategory_id' =>
         array(
             'name' => 'subcategory_id',
@@ -145,7 +142,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'options' => 'document_subcategory_dom',
             'reportable' => true,
         ),
-
         'status_id' =>
         array(
             'name' => 'status_id',
@@ -155,7 +151,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'options' => 'document_status_dom',
             'reportable' => false,
         ),
-
         'status' =>
         array(
             'name' => 'status',
@@ -164,7 +159,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'source' => 'non-db',
             'comment' => 'Document status for Meta-Data framework',
         ),
-
         'document_revision_id' =>
         array(
             'name' => 'document_revision_id',
@@ -173,7 +167,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'len' => '36',
             'reportable' => false,
         ),
-
         'revisions' =>
         array(
             'name' => 'revisions',
@@ -182,7 +175,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'source' => 'non-db',
             'vname' => 'LBL_REVISIONS',
         ),
-
         'revision' =>
         array(
             'name' => 'revision',
@@ -195,7 +187,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'required' => true,
             'default' => '1',
         ),
-
         'last_rev_created_name' =>
         array(
             'name' => 'last_rev_created_name',
@@ -298,7 +289,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'type' => 'varchar',
             'len' => '36',
         ),
-
         'related_doc_name' =>
         array(
             'name' => 'related_doc_name',
@@ -310,7 +300,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'source' => 'non-db',
             'comment' => 'The related document name for Meta-Data framework',
         ),
-
         'related_doc_rev_id' =>
         array(
             'name' => 'related_doc_rev_id',
@@ -320,7 +309,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'type' => 'varchar',
             'len' => '36',
         ),
-
         'related_doc_rev_number' =>
         array(
             'name' => 'related_doc_rev_number',
@@ -329,7 +317,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'source' => 'non-db',
             'comment' => 'The related document version number for Meta-Data framework',
         ),
-
         'is_template' =>
         array(
             'name' => 'is_template',
@@ -356,7 +343,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'reportable' => false,
             'source' => 'non-db'
         ),
-
         'selected_revision_name' =>
         array(
             'name' => 'selected_revision_name',
@@ -414,7 +400,6 @@ $dictionary['Document'] = array('table' => 'documents',
             'source' => 'non-db'
         ),
 //END fields used for contract documents subpanel.
-
     ),
     'indices' => array(
         array('name' => 'idx_doc_cat', 'type' => 'index', 'fields' => array('category_id', 'subcategory_id')),
@@ -423,18 +408,15 @@ $dictionary['Document'] = array('table' => 'documents',
         'document_revisions' => array('lhs_module' => 'Documents', 'lhs_table' => 'documents', 'lhs_key' => 'id',
             'rhs_module' => 'DocumentRevisions', 'rhs_table' => 'document_revisions', 'rhs_key' => 'document_id',
             'relationship_type' => 'one-to-many')
-
-    , 'documents_modified_user' =>
+        , 'documents_modified_user' =>
         array('lhs_module' => 'Users', 'lhs_table' => 'users', 'lhs_key' => 'id',
             'rhs_module' => 'Documents', 'rhs_table' => 'documents', 'rhs_key' => 'modified_user_id',
             'relationship_type' => 'one-to-many')
-
-    , 'documents_created_by' =>
+        , 'documents_created_by' =>
         array('lhs_module' => 'Users', 'lhs_table' => 'users', 'lhs_key' => 'id',
             'rhs_module' => 'Documents', 'rhs_table' => 'documents', 'rhs_key' => 'created_by',
             'relationship_type' => 'one-to-many')
     ),
-
 );
 VardefManager::createVardef('Documents', 'Document', array('default', 'assignable',
 ));
