@@ -16,4 +16,11 @@ $sugar_config['addAjaxBannedModules']['9'] = 'Accounts';
 $sugar_config['addAjaxBannedModules']['10'] = 'Cases';
 $sugar_config['addAjaxBannedModules']['11'] = 'Prospects';
 $sugar_config['addAjaxBannedModules']['12'] = 'Calls';
+$sugar_config['dump_slow_queries'] = true;
+$sugar_config['logger']['level'] = 'debug';
+$sugar_config['default_module_favicon'] = false;
+$sugar_config['dashlet_auto_refresh_min'] = '30';
+$sugar_config['enable_action_menu'] = true;
+$sugar_config['stack_trace_errors'] = false;
+$sugar_config['developerMode'] = true;
 /***CONFIGURATOR***/
