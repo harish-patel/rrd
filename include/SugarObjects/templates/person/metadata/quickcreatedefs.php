@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,53 +33,45 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 $module_name = '<module_name>';
 $viewdefs[$module_name]['QuickCreate'] = array(
-    'templateMeta' => array('maxColumns' => '2', 
-                            'widths' => array(
-                                            array('label' => '10', 'field' => '30'), 
-                                            array('label' => '10', 'field' => '30'),
-                                        ),
-),
- 'panels' =>array (
-  'lbl_contact_information' => 
-  array (
-    
-    array (
-      array (
-        'name' => 'first_name',
-        'customCode' => '{html_options name="salutation" options=$fields.salutation.options selected=$fields.salutation.value}&nbsp;<input name="first_name" size="25" maxlength="25" type="text" value="{$fields.first_name.value}">',
-      ),
-  	'assigned_user_name',
+    'templateMeta' => array('maxColumns' => '2',
+        'widths' => array(
+            array('label' => '10', 'field' => '30'),
+            array('label' => '10', 'field' => '30'),
+        ),
     ),
-    
-    array (
-      array('name'=>'last_name', 'displayParams'=>array('required'=>true)),
-    ),
-    
-    array (
-		'title',
-		 'phone_work',
-    ),
-    
-    array (
-		'department',
-		 'phone_mobile',
-    ),
-    
-    array (
-      	'phone_fax',
-		'',
-    ),    
-  ),
-  'lbl_email_addresses'=>array(
-  	array('email1')
-  ),
-
-)
-
-
+    'panels' => array(
+        'lbl_contact_information' =>
+        array(
+            array(
+                array(
+                    'name' => 'first_name',
+                    'customCode' => '{html_options name="salutation" options=$fields.salutation.options selected=$fields.salutation.value}&nbsp;<input name="first_name" size="25" maxlength="25" type="text" value="{$fields.first_name.value}">',
+                ),
+                'assigned_user_name',
+            ),
+            array(
+                array('name' => 'last_name', 'displayParams' => array('required' => true)),
+            ),
+            array(
+                'title',
+                'phone_work',
+            ),
+            array(
+                'department',
+                'phone_mobile',
+            ),
+            array(
+                'phone_fax',
+                '',
+            ),
+        ),
+        'lbl_email_addresses' => array(
+            array('email1')
+        ),
+    )
 );
 ?>

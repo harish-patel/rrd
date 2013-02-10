@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,41 +35,37 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  Defines the English language pack for the base application.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 
-$mod_strings = array (
-
-  'LBL_NAME' =>'Name',
-  'LBL_NUMBER' => 'Number:',
-  'LBL_STATUS' => 'Status:',
-  'LBL_PRIORITY' => 'Priority:',
-  'LBL_DESCRIPTION' => 'Description:',
-  'LBL_RESOLUTION' => 'Resolution',
-  'LBL_LAST_MODIFIED' => 'Last Modified',
-  'LBL_ASSIGNED_TO_ID'=>'Assigned To:',
-  'LBL_ASSIGNED_TO_NAME' => 'User:',  	  
-  'LBL_WORK_LOG' => 'Work Log:',
-  'LBL_CREATED_BY' => 'Created by:',
-  'LBL_DATE_CREATED' => 'Date Created:',
-  'LBL_DATE_ENTERED' => 'Date Created:',
-  'LBL_DATE_MODIFIED'=>'Date Modified:',
-  'LBL_MODIFIED_BY' => 'Last Modified by:',
-  'LBL_ASSIGNED_USER' => 'Assigned User:',
-  'LBL_SYSTEM_ID' =>'System Id:',
-  'LBL_TYPE'=>'Type:',
-  'LBL_SUBJECT' => 'Subject:',
-
+$mod_strings = array(
+    'LBL_NAME' => 'Name',
+    'LBL_NUMBER' => 'Number:',
+    'LBL_STATUS' => 'Status:',
+    'LBL_PRIORITY' => 'Priority:',
+    'LBL_DESCRIPTION' => 'Description:',
+    'LBL_RESOLUTION' => 'Resolution',
+    'LBL_LAST_MODIFIED' => 'Last Modified',
+    'LBL_ASSIGNED_TO_ID' => 'Assigned To:',
+    'LBL_ASSIGNED_TO_NAME' => 'User:',
+    'LBL_WORK_LOG' => 'Work Log:',
+    'LBL_CREATED_BY' => 'Created by:',
+    'LBL_DATE_CREATED' => 'Date Created:',
+    'LBL_DATE_ENTERED' => 'Date Created:',
+    'LBL_DATE_MODIFIED' => 'Date Modified:',
+    'LBL_MODIFIED_BY' => 'Last Modified by:',
+    'LBL_ASSIGNED_USER' => 'Assigned User:',
+    'LBL_SYSTEM_ID' => 'System Id:',
+    'LBL_TYPE' => 'Type:',
+    'LBL_SUBJECT' => 'Subject:',
     'LBL_EDIT_BUTTON' => 'Edit',
     'LBL_REMOVE' => 'Remove',
-
-  
-  );
+);
 ?>

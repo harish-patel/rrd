@@ -1,12 +1,14 @@
 <?php
+
 /*
  * Created on Mar 7, 2008
  *
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
- if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -39,30 +41,29 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 $module_name = '<module_name>';
 $OBJECT_NAME = '<OBJECT_NAME>';
 $listViewDefs[$module_name] = array(
-	'NAME' => array(
-		'width'   => '30',
-		'label'   => 'LBL_LIST_SALE_NAME',
-		'link'    => true,
+    'NAME' => array(
+        'width' => '30',
+        'label' => 'LBL_LIST_SALE_NAME',
+        'link' => true,
         'default' => true),
-
-	'SALES_STAGE' => array(
-		'width'   => '10',
-		'label'   => 'LBL_LIST_SALE_STAGE',
+    'SALES_STAGE' => array(
+        'width' => '10',
+        'label' => 'LBL_LIST_SALE_STAGE',
         'default' => true),
-	'AMOUNT_USDOLLAR' => array(
-		'width'   => '10',
-		'label'   => 'LBL_LIST_AMOUNT',
-        'align'   => 'right',
+    'AMOUNT_USDOLLAR' => array(
+        'width' => '10',
+        'label' => 'LBL_LIST_AMOUNT',
+        'align' => 'right',
         'default' => true,
         'currency_format' => true,
-	),
-    $OBJECT_NAME.'_TYPE' => array(
+    ),
+    $OBJECT_NAME . '_TYPE' => array(
         'width' => '15',
         'label' => 'LBL_TYPE'),
     'LEAD_SOURCE' => array(
@@ -74,9 +75,9 @@ $listViewDefs[$module_name] = array(
     'PROBABILITY' => array(
         'width' => '10',
         'label' => 'LBL_PROBABILITY'),
-	'DATE_CLOSED' => array(
-		'width' => '10',
-		'label' => 'LBL_LIST_DATE_CLOSED',
+    'DATE_CLOSED' => array(
+        'width' => '10',
+        'label' => 'LBL_LIST_DATE_CLOSED',
         'default' => true),
     'DATE_ENTERED' => array(
         'width' => '10',
@@ -84,15 +85,14 @@ $listViewDefs[$module_name] = array(
     'CREATED_BY_NAME' => array(
         'width' => '10',
         'label' => 'LBL_CREATED'),
-	'ASSIGNED_USER_NAME' => array(
-		'width' => '5',
-		'label' => 'LBL_LIST_ASSIGNED_USER',
-		'module' => 'Employees',
+    'ASSIGNED_USER_NAME' => array(
+        'width' => '5',
+        'label' => 'LBL_LIST_ASSIGNED_USER',
+        'module' => 'Employees',
         'id' => 'ASSIGNED_USER_ID',
         'default' => true),
     'MODIFIED_BY_NAME' => array(
         'width' => '5',
         'label' => 'LBL_MODIFIED')
 );
-
 ?>

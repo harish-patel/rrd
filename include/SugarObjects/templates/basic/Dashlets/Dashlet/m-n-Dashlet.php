@@ -1,6 +1,7 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if(!defined('sugarEntry') ||!sugarEntry) die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,31 +34,31 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  Defines the English language pack for the base application.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/Dashlets/DashletGeneric.php');
 require_once('modules/<module_name>/<object_name>.php');
 
-class <module_name>Dashlet extends DashletGeneric { 
-    function <module_name>Dashlet($id, $def = null) {
-		global $current_user, $app_strings;
-		require('modules/<module_name>/metadata/dashletviewdefs.php');
+class <module_name>Dashlet extends DashletGeneric {
+function <module_name>Dashlet($id, $def = null) {
+global $current_user, $app_strings;
+require('modules/<module_name>/metadata/dashletviewdefs.php');
 
-        parent::DashletGeneric($id, $def);
+parent::DashletGeneric($id, $def);
 
-        if(empty($def['title'])) $this->title = translate('LBL_HOMEPAGE_TITLE', '<module_name>');
+if(empty($def['title'])) $this->title = translate('LBL_HOMEPAGE_TITLE', '<module_name>');
 
-        $this->searchFields = $dashletData['<module_name>Dashlet']['searchFields'];
-        $this->columns = $dashletData['<module_name>Dashlet']['columns'];
+$this->searchFields = $dashletData['<module_name>Dashlet']['searchFields'];
+$this->columns = $dashletData['<module_name>Dashlet']['columns'];
 
-        $this->seedBean = new <object_name>();        
-    }
+$this->seedBean = new <object_name>();
+}
 }

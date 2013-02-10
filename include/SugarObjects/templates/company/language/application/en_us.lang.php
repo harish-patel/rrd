@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,7 +35,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /*
  * Created on Aug 14, 2007
@@ -41,22 +43,20 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
- $app_list_strings = array (
-
-  strtolower($object_name).'_type_dom' =>
-  array (
-    '' => '',
-    'Analyst' => 'Analyst',
-    'Competitor' => 'Competitor',
-    'Customer' => 'Customer',
-    'Integrator' => 'Integrator',
-    'Investor' => 'Investor',
-    'Partner' => 'Partner',
-    'Press' => 'Press',
-    'Prospect' => 'Prospect',
-    'Reseller' => 'Reseller',
-    'Other' => 'Other',
-  ),
-
-  );
+$app_list_strings = array(
+    strtolower($object_name) . '_type_dom' =>
+    array(
+        '' => '',
+        'Analyst' => 'Analyst',
+        'Competitor' => 'Competitor',
+        'Customer' => 'Customer',
+        'Integrator' => 'Integrator',
+        'Investor' => 'Investor',
+        'Partner' => 'Partner',
+        'Press' => 'Press',
+        'Prospect' => 'Prospect',
+        'Reseller' => 'Reseller',
+        'Other' => 'Other',
+    ),
+);
 ?>

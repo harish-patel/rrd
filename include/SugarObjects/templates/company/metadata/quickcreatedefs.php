@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,7 +35,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /*
  * Created on Aug 2, 2007
@@ -45,29 +47,28 @@ $module_name = '<module_name>';
 $_object_name = '<_object_name>';
 $viewdefs[$module_name]['QuickCreate'] = array(
     'templateMeta' => array(
-                            'form' => array('buttons'=>array('SAVE', 'CANCEL')),
-                            'maxColumns' => '2',
-                            'widths' => array(
-                                            array('label' => '10', 'field' => '30'),
-                                            array('label' => '10', 'field' => '30'),
-                                            ),
-                            'includes'=> array(
-                                            array('file'=>'modules/Accounts/Account.js'),
-                                         ),
-                           ),
-
+        'form' => array('buttons' => array('SAVE', 'CANCEL')),
+        'maxColumns' => '2',
+        'widths' => array(
+            array('label' => '10', 'field' => '30'),
+            array('label' => '10', 'field' => '30'),
+        ),
+        'includes' => array(
+            array('file' => 'modules/Accounts/Account.js'),
+        ),
+    ),
     'panels' => array(
-	   'lbl_account_information'=>array(
-		        array(array('name'=>'name', 'displayParams'=>array('required'=>true)), 'assigned_user_name'),
-			    array('website',
-			    ),
-		        array('industry', array('name'=>'phone_office')),
-		        array($_object_name . '_type',  'phone_fax'), 
-		         array('annual_revenue', ''),
-	   ),
-  	   'lbl_email_addresses'=>array(
-  				array('email1')
-  	   ),
+        'lbl_account_information' => array(
+            array(array('name' => 'name', 'displayParams' => array('required' => true)), 'assigned_user_name'),
+            array('website',
+            ),
+            array('industry', array('name' => 'phone_office')),
+            array($_object_name . '_type', 'phone_fax'),
+            array('annual_revenue', ''),
+        ),
+        'lbl_email_addresses' => array(
+            array('email1')
+        ),
     )
 );
 ?>

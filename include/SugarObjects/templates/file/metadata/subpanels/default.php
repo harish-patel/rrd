@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,61 +35,54 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
- 
- $module_name = '<module_name>';
+ * ****************************************************************************** */
+
+$module_name = '<module_name>';
 $subpanel_layout = array(
-	'top_buttons' => array(
-       array('widget_class' => 'SubPanelTopCreateButton'),
-	   array('widget_class' => 'SubPanelTopSelectButton', 'popup_module' => $module_name,),
-	),
-
-	'where' => '',
-
-
-
-    'list_fields'=> array(
-	   'object_image'=>array(
-			'widget_class' => 'SubPanelIcon',
- 		 	'width' => '2%',
- 		 	'image2'=>'attachment',
- 		 	'image2_url_field'=>array('id_field'=>'selected_revision_id','filename_field'=>'selected_revision_filename'),
- 		 	'attachment_image_only'=>true,
-
-		),
-      'document_name'=> array(
-	    	'name' => 'document_name',
-	 		'vname' => 'LBL_LIST_DOCUMENT_NAME',
-			'widget_class' => 'SubPanelDetailViewLink',
-			'width' => '45%',
-	   ),
-	   
-	   'active_date' =>
-          array (
+    'top_buttons' => array(
+        array('widget_class' => 'SubPanelTopCreateButton'),
+        array('widget_class' => 'SubPanelTopSelectButton', 'popup_module' => $module_name,),
+    ),
+    'where' => '',
+    'list_fields' => array(
+        'object_image' => array(
+            'widget_class' => 'SubPanelIcon',
+            'width' => '2%',
+            'image2' => 'attachment',
+            'image2_url_field' => array('id_field' => 'selected_revision_id', 'filename_field' => 'selected_revision_filename'),
+            'attachment_image_only' => true,
+        ),
+        'document_name' => array(
+            'name' => 'document_name',
+            'vname' => 'LBL_LIST_DOCUMENT_NAME',
+            'widget_class' => 'SubPanelDetailViewLink',
+            'width' => '45%',
+        ),
+        'active_date' =>
+        array(
             'name' => 'active_date',
             'vname' => 'LBL_DOC_ACTIVE_DATE',
             'width' => '45%',
-          ),
-
-		'edit_button'=>array(
+        ),
+        'edit_button' => array(
             'vname' => 'LBL_EDIT_BUTTON',
-			'widget_class' => 'SubPanelEditButton',
-		 	'module' => $module_name,
-			'width' => '5%',
-		),
-		'remove_button'=>array(
+            'widget_class' => 'SubPanelEditButton',
+            'module' => $module_name,
+            'width' => '5%',
+        ),
+        'remove_button' => array(
             'vname' => 'LBL_REMOVE',
-			'widget_class' => 'SubPanelRemoveButton',
-		 	'module' => $module_name,
-			'width' => '5%',
-		),
-	),
+            'widget_class' => 'SubPanelRemoveButton',
+            'module' => $module_name,
+            'width' => '5%',
+        ),
+    ),
 );
 ?>

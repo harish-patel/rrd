@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,56 +33,44 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 $module_name = '<module_name>';
 $_object_name = '<_object_name>';
 $viewdefs[$module_name]['EditView'] = array(
-    'templateMeta' => array('maxColumns' => '2', 
-                            'widths' => array(
-                                            array('label' => '10', 'field' => '30'), 
-                                            array('label' => '10', 'field' => '30')
-                                            ),                                                                                                                                    
-                                            ),
-                                            
-                                            
- 'panels' =>array (
-  'default' => 
-  array (
-    
-    array (
-      
-      array (
-        'name' => $_object_name . '_number',
-        'type' => 'readonly',
-      ),
-      'assigned_user_name',
+    'templateMeta' => array('maxColumns' => '2',
+        'widths' => array(
+            array('label' => '10', 'field' => '30'),
+            array('label' => '10', 'field' => '30')
+        ),
     ),
-    
-    array (
-      'priority',
+    'panels' => array(
+        'default' =>
+        array(
+            array(
+                array(
+                    'name' => $_object_name . '_number',
+                    'type' => 'readonly',
+                ),
+                'assigned_user_name',
+            ),
+            array(
+                'priority',
+            ),
+            array(
+                'resolution',
+                'status',
+            ),
+            array(
+                array('name' => 'name', 'displayParams' => array('size' => 60)),
+            ),
+            array(
+                'description',
+            ),
+            array(
+                'work_log',
+            ),
+        ),
     ),
-    
-    array (
-      'resolution',
-      'status',
-    ),
-
-    array (
-      array('name'=>'name', 'displayParams'=>array('size'=>60)),
-    ),
-    
-    array (
-      'description',
-    ),
-    
-    
-    array (
-      'work_log',
-    ),
-  ),
-                                                    
-),
-                        
 );
 ?>

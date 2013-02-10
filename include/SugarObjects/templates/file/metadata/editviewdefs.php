@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,66 +35,56 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 
- $module_name = '<module_name>';
+$module_name = '<module_name>';
 
- $viewdefs[$module_name]['EditView'] = array(
-    'templateMeta' => array('form' => array('enctype'=>'multipart/form-data',
-                                            'hidden'=>array()),
-
-                            'maxColumns' => '2',
-                            'widths' => array(
-                                            array('label' => '10', 'field' => '30'),
-                                            array('label' => '10', 'field' => '30')
-                                            ),
-'javascript' =>
-	'{sugar_getscript file="include/javascript/popup_parent_helper.js"}
+$viewdefs[$module_name]['EditView'] = array(
+    'templateMeta' => array('form' => array('enctype' => 'multipart/form-data',
+            'hidden' => array()),
+        'maxColumns' => '2',
+        'widths' => array(
+            array('label' => '10', 'field' => '30'),
+            array('label' => '10', 'field' => '30')
+        ),
+        'javascript' =>
+        '{sugar_getscript file="include/javascript/popup_parent_helper.js"}
 	{sugar_getscript file="cache/include/javascript/sugar_grp_jsolait.js"}
 	{sugar_getscript file="modules/Documents/documents.js"}',
-),
- 'panels' =>array (
-  'default' =>
-  array (
-
-    array (
-      'document_name',
-      array(
-      		'name'=>'uploadfile',
-            'displayParams' => array('onchangeSetFileNameTo' => 'document_name'),
-      ),
-
-	),
-
-    array (
-       'category_id',
-       'subcategory_id',
     ),
-
-    array (
-      'assigned_user_name',
-    ),
-
-    array (
-      'active_date',
-      'exp_date',
-    ),
-
-	array('status_id'),
-    array (
-
-      array('name'=>'description'),
-
-    ),
-  ),
-)
+    'panels' => array(
+        'default' =>
+        array(
+            array(
+                'document_name',
+                array(
+                    'name' => 'uploadfile',
+                    'displayParams' => array('onchangeSetFileNameTo' => 'document_name'),
+                ),
+            ),
+            array(
+                'category_id',
+                'subcategory_id',
+            ),
+            array(
+                'assigned_user_name',
+            ),
+            array(
+                'active_date',
+                'exp_date',
+            ),
+            array('status_id'),
+            array(
+                array('name' => 'description'),
+            ),
+        ),
+    )
 );
-
 ?>

@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,23 +35,22 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
- 
- $module_name = '<module_name>';
-$OBJECT_NAME = '<OBJECT_NAME>';
- $listViewDefs[$module_name] = array(
+ * ****************************************************************************** */
 
-	'DOCUMENT_NAME' => array(
-		'width' => '40',
-		'label' => 'LBL_NAME',
-		'link' => true,
+$module_name = '<module_name>';
+$OBJECT_NAME = '<OBJECT_NAME>';
+$listViewDefs[$module_name] = array(
+    'DOCUMENT_NAME' => array(
+        'width' => '40',
+        'label' => 'LBL_NAME',
+        'link' => true,
         'default' => true),
     'MODIFIED_BY_NAME' => array(
         'width' => '10',
@@ -72,7 +73,6 @@ $OBJECT_NAME = '<OBJECT_NAME>';
         'label' => 'LBL_LIST_LAST_REV_CREATOR',
         'default' => true,
         'sortable' => false),
-
     'ACTIVE_DATE' => array(
         'width' => '10',
         'label' => 'LBL_LIST_ACTIVE_DATE',
@@ -81,6 +81,6 @@ $OBJECT_NAME = '<OBJECT_NAME>';
         'width' => '10',
         'label' => 'LBL_LIST_EXP_DATE',
         'default' => true),
-        );
+);
 ?>
 

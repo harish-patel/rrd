@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,7 +33,7 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /*
  * Created on July 12, 2007
@@ -41,12 +42,12 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
 $module_name = '<module_name>';
- $metafiles[$module_name] = array(
-	'detailviewdefs'  => 	'modules/'.$module_name.'/metadata/detailviewdefs.php', 	
-	'editviewdefs'    => 	'modules/'. $module_name. '/metadata/editviewdefs.php',
- 	'listviewdefs'    => 	'modules/'. $module_name. '/metadata/listviewdefs.php',
- 	'searchdefs'      =>    'modules/'. $module_name. '/metadata/searchdefs.php',
- 	'popupdefs'	      =>    'modules/'. $module_name. '/metadata/popupdefs.php',
- 	'searchfields'	  =>    'modules/'. $module_name. '/metadata/SearchFields.php',
- );
+$metafiles[$module_name] = array(
+    'detailviewdefs' => 'modules/' . $module_name . '/metadata/detailviewdefs.php',
+    'editviewdefs' => 'modules/' . $module_name . '/metadata/editviewdefs.php',
+    'listviewdefs' => 'modules/' . $module_name . '/metadata/listviewdefs.php',
+    'searchdefs' => 'modules/' . $module_name . '/metadata/searchdefs.php',
+    'popupdefs' => 'modules/' . $module_name . '/metadata/popupdefs.php',
+    'searchfields' => 'modules/' . $module_name . '/metadata/SearchFields.php',
+);
 ?>

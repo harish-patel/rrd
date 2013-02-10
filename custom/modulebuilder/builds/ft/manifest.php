@@ -60,9 +60,9 @@ $manifest = array (
   'icon' => '',
   'is_uninstallable' => true,
   'name' => 'ft',
-  'published_date' => '2013-02-09 19:20:53',
+  'published_date' => '2013-02-10 04:58:29',
   'type' => 'module',
-  'version' => 1360437653,
+  'version' => 1360472309,
   'remove_tables' => 'prompt',
 );
 
@@ -78,12 +78,28 @@ $installdefs = array (
       'path' => 'modules/ft_FieldTrial/ft_FieldTrial.php',
       'tab' => true,
     ),
+    1 => 
+    array (
+      'module' => 'ft_FileUpload',
+      'class' => 'ft_FileUpload',
+      'path' => 'modules/ft_FileUpload/ft_FileUpload.php',
+      'tab' => true,
+    ),
   ),
   'layoutdefs' => 
   array (
+    0 => 
+    array (
+      'from' => '<basepath>/SugarModules/relationships/layoutdefs/ft_fileupload_documents_ft_FileUpload.php',
+      'to_module' => 'ft_FileUpload',
+    ),
   ),
   'relationships' => 
   array (
+    0 => 
+    array (
+      'meta_data' => '<basepath>/SugarModules/relationships/relationships/ft_fileupload_documentsMetaData.php',
+    ),
   ),
   'image_dir' => '<basepath>/icons',
   'copy' => 
@@ -93,14 +109,54 @@ $installdefs = array (
       'from' => '<basepath>/SugarModules/modules/ft_FieldTrial',
       'to' => 'modules/ft_FieldTrial',
     ),
+    1 => 
+    array (
+      'from' => '<basepath>/SugarModules/modules/ft_FileUpload',
+      'to' => 'modules/ft_FileUpload',
+    ),
   ),
   'language' => 
   array (
     0 => 
     array (
+      'from' => '<basepath>/SugarModules/relationships/language/Documents.php',
+      'to_module' => 'Documents',
+      'language' => 'en_us',
+    ),
+    1 => 
+    array (
+      'from' => '<basepath>/SugarModules/relationships/language/ft_FileUpload.php',
+      'to_module' => 'ft_FileUpload',
+      'language' => 'en_us',
+    ),
+    2 => 
+    array (
       'from' => '<basepath>/SugarModules/language/application/en_us.lang.php',
       'to_module' => 'application',
       'language' => 'en_us',
+    ),
+  ),
+  'vardefs' => 
+  array (
+    0 => 
+    array (
+      'from' => '<basepath>/SugarModules/relationships/vardefs/ft_fileupload_documents_Documents.php',
+      'to_module' => 'Documents',
+    ),
+    1 => 
+    array (
+      'from' => '<basepath>/SugarModules/relationships/vardefs/ft_fileupload_documents_ft_FileUpload.php',
+      'to_module' => 'ft_FileUpload',
+    ),
+  ),
+  'layoutfields' => 
+  array (
+    0 => 
+    array (
+      'additional_fields' => 
+      array (
+        'Documents' => 'ft_fileupload_documents_name',
+      ),
     ),
   ),
 );

@@ -1,6 +1,8 @@
 <?php
-if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,8 +35,7 @@ if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
-
+ * ****************************************************************************** */
 
 /**
  * Global registry
@@ -42,40 +43,51 @@ if (!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  */
 class SugarRegistry
 {
+
     private static $_instances = array();
     private $_data = array();
 
-    public function __construct() {
-
+    public function __construct()
+    {
+        
     }
 
-    public static function getInstance($name = 'default') {
-        if (!isset(self::$_instances[$name])) {
+    public static function getInstance($name = 'default')
+    {
+        if (!isset(self::$_instances[$name]))
+        {
             self::$_instances[$name] = new self();
         }
         return self::$_instances[$name];
     }
 
-    public function __get($key) {
+    public function __get($key)
+    {
         return isset($this->_data[$key]) ? $this->_data[$key] : null;
     }
 
-    public function __set($key, $value) {
+    public function __set($key, $value)
+    {
         $this->_data[$key] = $value;
     }
 
-    public function __isset($key) {
+    public function __isset($key)
+    {
         return isset($this->_data[$key]);
     }
 
-    public function __unset($key) {
+    public function __unset($key)
+    {
         unset($this->_data[$key]);
     }
 
-    public function addToGlobals() {
-        foreach ($this->_data as $k => $v) {
+    public function addToGlobals()
+    {
+        foreach ($this->_data as $k => $v)
+        {
             $GLOBALS[$k] = $v;
         }
     }
+
 }
 

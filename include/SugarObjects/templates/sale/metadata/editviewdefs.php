@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,56 +35,52 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  Defines the English language pack for the base application.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 
 $module_name = '<module_name>';
 $_object_name = '<_object_name>';
 $viewdefs[$module_name]['EditView'] = array(
     'templateMeta' => array('maxColumns' => '2',
-                            'widths' => array(
-                                            array('label' => '10', 'field' => '30'),
-                                            array('label' => '10', 'field' => '30')
-                                            ),
-    'javascript' => '{$PROBABILITY_SCRIPT}',
-),
- 'panels' =>array (
-  'lbl_sale_information' =>array (
-    array(
-		'name',
-		'currency_id',
-	),
-    array(
-        $_object_name.'_type', 
-        'amount',
+        'widths' => array(
+            array('label' => '10', 'field' => '30'),
+            array('label' => '10', 'field' => '30')
+        ),
+        'javascript' => '{$PROBABILITY_SCRIPT}',
     ),
-    array ('lead_source', 'date_closed'),
-    array (
-        'sales_stage',
-    ),
-
-    array (
-      array('name'=>'assigned_user_name','displayParams'=>array('required'=>true)),
-      'next_step',
-    ),
-    array (
-      'probability',
-      ''
-    ),
-
-       array (
-      'description'
-    ),
-  ),
-)
-
-
+    'panels' => array(
+        'lbl_sale_information' => array(
+            array(
+                'name',
+                'currency_id',
+            ),
+            array(
+                $_object_name . '_type',
+                'amount',
+            ),
+            array('lead_source', 'date_closed'),
+            array(
+                'sales_stage',
+            ),
+            array(
+                array('name' => 'assigned_user_name', 'displayParams' => array('required' => true)),
+                'next_step',
+            ),
+            array(
+                'probability',
+                ''
+            ),
+            array(
+                'description'
+            ),
+        ),
+    )
 );
 ?>

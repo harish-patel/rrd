@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,102 +33,113 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 require_once('include/SugarObjects/templates/basic/Basic.php');
 
 class Person extends Basic
 {
+
     var $picture;
+
     /**
      * @var bool controls whether or not to invoke the getLocalFormatttedName method with title and salutation
      */
     var $createLocaleFormattedName = true;
-    
-	public function Person()
-	{
-		parent::Basic();
-		$this->emailAddress = new SugarEmailAddress();
-	}
 
-	/**
-	 * need to override to have a name field created for this class
-	 *
- 	 * @see parent::retrieve()
- 	 */
-    public function retrieve($id = -1, $encode=true, $deleted=true) {
-		$ret_val = parent::retrieve($id, $encode, $deleted);
-		$this->_create_proper_name_field();
-		return $ret_val;
-	}
+    public function Person()
+    {
+        parent::Basic();
+        $this->emailAddress = new SugarEmailAddress();
+    }
 
-	/**
- 	 * Populate email address fields here instead of retrieve() so that they are properly available for logic hooks
- 	 *
- 	 * @see parent::fill_in_relationship_fields()
- 	 */
-	public function fill_in_relationship_fields()
-	{
-	    parent::fill_in_relationship_fields();
-	    $this->emailAddress->handleLegacyRetrieve($this);
-	}
+    /**
+     * need to override to have a name field created for this class
+     *
+     * @see parent::retrieve()
+     */
+    public function retrieve($id = -1, $encode = true, $deleted = true)
+    {
+        $ret_val = parent::retrieve($id, $encode, $deleted);
+        $this->_create_proper_name_field();
+        return $ret_val;
+    }
 
-	/**
+    /**
+     * Populate email address fields here instead of retrieve() so that they are properly available for logic hooks
+     *
+     * @see parent::fill_in_relationship_fields()
+     */
+    public function fill_in_relationship_fields()
+    {
+        parent::fill_in_relationship_fields();
+        $this->emailAddress->handleLegacyRetrieve($this);
+    }
+
+    /**
      * This function helps generate the name and full_name member field variables from the salutation, title, first_name and last_name fields.
      * It takes into account the locale format settings as well as ACL settings if supported.
-	 */
-	public function _create_proper_name_field()
-	{
-		global $locale, $app_list_strings;
+     */
+    public function _create_proper_name_field()
+    {
+        global $locale, $app_list_strings;
 
         // Bug# 46125 - make first name, last name, salutation and title of Contacts respect field level ACLs
-        $first_name = ""; $last_name = ""; $salutation = ""; $title = "";
+        $first_name = "";
+        $last_name = "";
+        $salutation = "";
+        $title = "";
 
-           // first name has at least read access
-           $first_name = $this->first_name;
+        // first name has at least read access
+        $first_name = $this->first_name;
 
-            // last name has at least read access
-            $last_name = $this->last_name;
+        // last name has at least read access
+        $last_name = $this->last_name;
 
 
-            // salutation has at least read access
-            if(isset($this->field_defs['salutation']['options'])
-			  && isset($app_list_strings[$this->field_defs['salutation']['options']])
-			  && isset($app_list_strings[$this->field_defs['salutation']['options']][$this->salutation]) ) {
+        // salutation has at least read access
+        if (isset($this->field_defs['salutation']['options'])
+                && isset($app_list_strings[$this->field_defs['salutation']['options']])
+                && isset($app_list_strings[$this->field_defs['salutation']['options']][$this->salutation]))
+        {
 
-			        $salutation = $app_list_strings[$this->field_defs['salutation']['options']][$this->salutation];
-			} // if
-
-            // last name has at least read access
-            $title = $this->title;
+            $salutation = $app_list_strings[$this->field_defs['salutation']['options']][$this->salutation];
+        } // if
+        // last name has at least read access
+        $title = $this->title;
 
         // Corner Case:
         // Both first name and last name cannot be empty, at least one must be shown
         // In that case, we can ignore field level ACL and just display last name...
         // In the ACL field level access settings, last_name cannot be set to "none"
-        if (empty($first_name) && empty($last_name)) {
+        if (empty($first_name) && empty($last_name))
+        {
             $full_name = $locale->getLocaleFormattedName("", $last_name, $salutation, $title);
-        } else {
-			if($this->createLocaleFormattedName) {
-				$full_name = $locale->getLocaleFormattedName($first_name, $last_name, $salutation, $title);
-			} else {
-				$full_name = $locale->getLocaleFormattedName($first_name, $last_name);
-			}
-		}
+        }
+        else
+        {
+            if ($this->createLocaleFormattedName)
+            {
+                $full_name = $locale->getLocaleFormattedName($first_name, $last_name, $salutation, $title);
+            }
+            else
+            {
+                $full_name = $locale->getLocaleFormattedName($first_name, $last_name);
+            }
+        }
 
-		$this->name = $full_name;
-		$this->full_name = $full_name; //used by campaigns
-	}
-	
+        $this->name = $full_name;
+        $this->full_name = $full_name; //used by campaigns
+    }
 
-	/**
- 	 * @see parent::save()
- 	 */
-	public function save($check_notify=false) 
-	{
-		//If we are saving due to relationship changes, don't bother trying to update the emails
-        if(!empty($GLOBALS['resavingRelatedBeans']))
+    /**
+     * @see parent::save()
+     */
+    public function save($check_notify = false)
+    {
+        //If we are saving due to relationship changes, don't bother trying to update the emails
+        if (!empty($GLOBALS['resavingRelatedBeans']))
         {
             parent::save($check_notify);
             return $this->id;
@@ -141,57 +153,62 @@ class Person extends Basic
         parent::save($check_notify);
         // $this->emailAddress->evaluateWorkflowChanges($this->id, $this->module_dir);
         $override_email = array();
-        if(!empty($this->email1_set_in_workflow)) {
+        if (!empty($this->email1_set_in_workflow))
+        {
             $override_email['emailAddress0'] = $this->email1_set_in_workflow;
         }
-        if(!empty($this->email2_set_in_workflow)) {
+        if (!empty($this->email2_set_in_workflow))
+        {
             $override_email['emailAddress1'] = $this->email2_set_in_workflow;
         }
-        if(!isset($this->in_workflow)) {
+        if (!isset($this->in_workflow))
+        {
             $this->in_workflow = false;
         }
-        if($ori_in_workflow === false || !empty($override_email)){
-            $this->emailAddress->save($this->id, $this->module_dir, $override_email,'','','','',$this->in_workflow);
+        if ($ori_in_workflow === false || !empty($override_email))
+        {
+            $this->emailAddress->save($this->id, $this->module_dir, $override_email, '', '', '', '', $this->in_workflow);
             // $this->emailAddress->applyWorkflowChanges($this->id, $this->module_dir);
         }
-		return $this->id;
-	}
+        return $this->id;
+    }
 
-	/**
- 	 * @see parent::get_summary_text()
- 	 */
-	public function get_summary_text() 
-	{
-		$this->_create_proper_name_field();
+    /**
+     * @see parent::get_summary_text()
+     */
+    public function get_summary_text()
+    {
+        $this->_create_proper_name_field();
         return $this->name;
-	}
+    }
 
-	/**
- 	 * @see parent::get_list_view_data()
- 	 */
-	public function get_list_view_data() 
-	{
-		global $system_config;
-		global $current_user;
-		$this->_create_proper_name_field();
-		$temp_array = $this->get_list_view_array();
-		$temp_array['NAME'] = $this->name;
-		$temp_array['EMAIL1'] = $this->emailAddress->getPrimaryAddress($this);
-		$this->email1 = $temp_array['EMAIL1'];
-		$temp_array['EMAIL1_LINK'] = $current_user->getEmailLink('email1', $this, '', '', 'ListView');
-		return $temp_array;
-	}
+    /**
+     * @see parent::get_list_view_data()
+     */
+    public function get_list_view_data()
+    {
+        global $system_config;
+        global $current_user;
+        $this->_create_proper_name_field();
+        $temp_array = $this->get_list_view_array();
+        $temp_array['NAME'] = $this->name;
+        $temp_array['EMAIL1'] = $this->emailAddress->getPrimaryAddress($this);
+        $this->email1 = $temp_array['EMAIL1'];
+        $temp_array['EMAIL1_LINK'] = $current_user->getEmailLink('email1', $this, '', '', 'ListView');
+        return $temp_array;
+    }
 
     /**
      * @see SugarBean::populateRelatedBean()
- 	 */
+     */
     public function populateRelatedBean(
-        SugarBean $newbean
-        )
+    SugarBean $newbean
+    )
     {
         parent::populateRelatedBean($newbean);
 
-        if ( $newbean instanceOf Company ) {
+        if ($newbean instanceOf Company)
+        {
             $newbean->phone_fax = $this->phone_fax;
             $newbean->phone_office = $this->phone_work;
             $newbean->phone_alternate = $this->phone_other;
@@ -210,4 +227,5 @@ class Person extends Basic
             $newbean->shipping_address_country = $this->alt_address_country;
         }
     }
+
 }
