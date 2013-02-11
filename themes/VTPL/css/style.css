@@ -198,9 +198,9 @@ th, td
 /* layout the header elements */
 #header div.line 
 {
-/*    height: 4px;
-    margin: 0;
-    padding: 0;*/
+    /*    height: 4px;
+        margin: 0;
+        padding: 0;*/
 }
 #header ul li
 {
@@ -731,6 +731,7 @@ div.moduleTitle
 .edit tr th 
 {
     padding: 5px 5px 5px 7px !important;
+    background-color: #EEEEEE;
 }
 table#tabFormPagination td,  #tabFormPagination, #EditView > table#tabFormPagination.detail.view
 {
@@ -939,7 +940,7 @@ table.edit.view {
 /* style for page content tables */
 .other
 {
-    border: none !important;
+    /*    border: none !important;*/
     margin-bottom: 20px !important;
     padding: 0 !important;
     width: 100%;
@@ -2955,9 +2956,9 @@ button[selected], input[type=submit][selected], input[type=reset][selected], inp
 }
 /* header */
 #header div.line {
-/*    height: 2px;
-    border-bottom: 2px solid;
-    color:#0046ad;*/
+    /*    height: 2px;
+        border-bottom: 2px solid;
+        color:#0046ad;*/
 }
 
 #sitemapLink 
@@ -3648,7 +3649,7 @@ h1, h2, h3
 }
 h4, h5
 {
-    color: #444;
+    color: #666;
 }
 a:link, a:visited
 {
@@ -3987,8 +3988,10 @@ table.detail
 /* other views */
 .other 
 {
-    border-color: #abc3d7;
-    background-color: #cbdae6;
+    border: 2px solid #ccc;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
 }
 .other td
 {
@@ -3999,7 +4002,7 @@ table.detail
 .other td[scope=row]
 {
     color: #000000;
-    background-color: #fafafa;
+    background-color: #EEEEEE;
 }
 .other td.edit
 {
@@ -4342,10 +4345,11 @@ ul.SugarActionMenuIESub {
 ul.SugarActionMenuIESub li a:hover, ul.clickMenu.SugarActionMenu li a:hover, ul.clickMenu.SugarActionMenu li span.subhover:hover,
 ul#globalLinksSubnav li a:hover, ul#quickCreateULSubnav li a:hover,
 ul.clickMenu li ul.subnav li a:hover,ul.clickMenu li ul.subnav li input:hover, ul.clickMenu.subpanel.records li ul.subnav li a:hover, ul.clickMenu ul.subnav-sub li a:hover { /*--Hover effect for subnav links--*/
-
     background-color: #4e8ccf;
     border-color: #4e8ccf;
-    color: #fff;	
+    color: #fff;
+    
+    text-shadow: none;    
 }
 ul#globalLinksSubnav.SugarActionMenuIESub li a:hover, ul#quickCreateULSubnav.SugarActionMenuIESub li a:hover,
 ul.clickMenu:hover > li > span > a, ul.clickMenu:hover > li > a {
@@ -4356,15 +4360,22 @@ ul.clickMenu li span.ab:hover {
     background-position: 6px 0px;
 }
 ul.clickMenu>li, ul.SugarActionMenuIESub li {
-    background-color: #ECF1F4;
+    /*background-color: #ECF1F4;
     background-image: url('../../../../index.php?entryPoint=getImage&imageName=bgBtn.gif');
-    border: 1px solid #ABC3D7;
+    border: 1px solid #ABC3D7;*/
+    background-image: url('../../../../index.php?entryPoint=getImage&imageName=form-button-bg.png');
+    background-position: center center;
+    border: 1px solid #CCCCCC;
     float: left;
     margin: 0;	
-    padding: 0 0 0 0;
+    padding: 2px;
     list-style: none;
     position: relative; /*--Declare X and Y axis base--*/
     cursor: pointer;
+
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
 }
 ul.SugarActionMenuIESub li a,
 ul.clickMenu li a, .list tr.pagination td.buttons ul.clickMenu > li > a:link, .list tr.pagination td.buttons ul.clickMenu > li > a{
@@ -4373,8 +4384,9 @@ ul.clickMenu li a, .list tr.pagination td.buttons ul.clickMenu > li > a:link, .l
     float: left;
     font-weight: normal !important;
     padding: 1px 10px 1px 10px !important;
-    color: #000;
+    color: #666;
     font-size: 12px;
+    text-shadow: 1px 1px #fff;
 }
 
 .list tr.pagination td.buttons ul.clickMenu:hover > li > a:link, .list tr.pagination td.buttons ul.clickMenu:hover > li > a{		
