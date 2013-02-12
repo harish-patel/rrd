@@ -1,4 +1,5 @@
 <?php
+
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
@@ -60,9 +61,9 @@ $manifest = array (
   'icon' => '',
   'is_uninstallable' => true,
   'name' => 'ft',
-  'published_date' => '2013-02-10 04:58:25',
+  'published_date' => '2013-02-10 05:13:37',
   'type' => 'module',
-  'version' => 1360472306,
+  'version' => 1360473218,
   'remove_tables' => 'prompt',
 );
 

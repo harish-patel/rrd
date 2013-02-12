@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,21 +33,27 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('modules/ModuleBuilder/MB/MBPackageTree.php');
 require_once('modules/ModuleBuilder/Module/StudioBrowser.php');
-class StudioTree extends MBPackageTree{
-	function StudioTree(){
-		$this->tree = new Tree('package_tree');
-		$this->tree->id = 'package_tree';
-		$this->mb = new StudioBrowser();
-		$this->populateTree($this->mb->getNodes(), $this->tree);
-	}
-	
-	function getName(){
-		return translate('LBL_SECTION_MODULES');
-	}
-	
+
+class StudioTree extends MBPackageTree
+{
+
+    function StudioTree()
+    {
+        $this->tree = new Tree('package_tree');
+        $this->tree->id = 'package_tree';
+        $this->mb = new StudioBrowser();
+        $this->populateTree($this->mb->getNodes(), $this->tree);
+    }
+
+    function getName()
+    {
+        return translate('LBL_SECTION_MODULES');
+    }
+
 }
+
 ?>

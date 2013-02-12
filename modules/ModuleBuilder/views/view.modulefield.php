@@ -211,7 +211,8 @@ class ViewModulefield extends SugarView
 
             $edit_or_add = 'editField' ;
 
-        } else
+        } 
+        else
         {
             require_once('modules/ModuleBuilder/MB/ModuleBuilder.php');
             $mb = new ModuleBuilder();

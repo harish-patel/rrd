@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,37 +33,39 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-require_once 'modules/ModuleBuilder/Module/StudioModule.php' ;
+require_once 'modules/ModuleBuilder/Module/StudioModule.php';
 
 class StudioModuleFactory
 {
-	protected static $loadedMods = array();
+
+    protected static $loadedMods = array();
 
     public static function getStudioModule($module)
-	{
-		if (!empty(self::$loadedMods[$module]))
+    {
+        if (!empty(self::$loadedMods[$module]))
             return self::$loadedMods[$module];
 
         $studioModClass = "{$module}StudioModule";
-		if (file_exists("custom/modules/{$module}/{$studioModClass}.php"))
-		{
-			require_once "custom/modules/{$module}/{$studioModClass}.php";
-			$sm = new $studioModClass($module);
-
-		} else if (file_exists("modules/{$module}/{$studioModClass}.php"))
-		{
-			require_once "modules/{$module}/{$studioModClass}.php";
-			$sm = new $studioModClass($module);
-
-		}
-		else 
-		{
-			$sm = new StudioModule($module);
-		}
+        if (file_exists("custom/modules/{$module}/{$studioModClass}.php"))
+        {
+            require_once "custom/modules/{$module}/{$studioModClass}.php";
+            $sm = new $studioModClass($module);
+        }
+        else if (file_exists("modules/{$module}/{$studioModClass}.php"))
+        {
+            require_once "modules/{$module}/{$studioModClass}.php";
+            $sm = new $studioModClass($module);
+        }
+        else
+        {
+            $sm = new StudioModule($module);
+        }
         self::$loadedMods[$module] = $sm;
         return $sm;
-	}
+    }
+
 }
+
 ?>

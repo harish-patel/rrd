@@ -1,7 +1,8 @@
 <?php
-if (! defined('sugarEntry') || ! sugarEntry)
-die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -34,7 +35,7 @@ die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 require_once ('modules/ModuleBuilder/parsers/ModuleBuilderParser.php');
@@ -55,23 +56,23 @@ class ParserModifyLayoutView extends ModuleBuilderParser
     var $_viewdefs; // private
     var $_fieldDefs; // private
 
-
     /**
      * Constructor
      */
-    function init ($module, $view, $submittedLayout = false)
+
+    function init($module, $view, $submittedLayout = false)
     {
         $this->_view = ucfirst($view);
         $this->_module = $module;
         $this->language_module = $module;
 
         $this->_baseDirectory = "modules/{$module}/metadata/";
-        $file =  $this->_baseDirectory . strtolower($view) . "defs.php";
+        $file = $this->_baseDirectory . strtolower($view) . "defs.php";
         $this->_customFile = "custom/" . $file;
         $this->_workingFile = "custom/working/" . $file;
 
         $this->_sourceView = $this->_view;
-        $this->_originalFile = $file ;
+        $this->_originalFile = $file;
         $this->_sourceFile = $file;
         if (is_file($this->_workingFile))
         {
@@ -82,13 +83,13 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         {
             $this->_sourceFile = $this->_customFile;
         }
-        else if (! is_file($this->_sourceFile))
+        else if (!is_file($this->_sourceFile))
         {
             // if we don't have ANY defined metadata then improvise as best we can
             if (strtolower($this->_view) == 'quickcreate')
             {
                 // special handling for quickcreates - base the quickcreate on the editview if no quickcreatedef exists
-                $this->_sourceFile = $this->_baseDirectory."editviewdefs.php";
+                $this->_sourceFile = $this->_baseDirectory . "editviewdefs.php";
                 if (is_file("custom/" . $this->_sourceFile))
                 {
                     $this->_sourceFile = "custom/" . $this->_sourceFile;
@@ -97,7 +98,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
             }
             else
             {
-                $this->_fatalError('parser.modifylayout.php->init(): no metadata for '.$this->_module.' '.$this->_view);
+                $this->_fatalError('parser.modifylayout.php->init(): no metadata for ' . $this->_module . ' ' . $this->_view);
             }
         }
 
@@ -115,21 +116,21 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         {
             // replace the definitions with the new submitted layout
             $this->_loadLayoutFromRequest();
-        } else
+        }
+        else
         {
             $this->_padFields(); // destined for a View, so we want to add in (empty) fields
         }
 //      $GLOBALS['log']->debug($this->_viewdefs['panels']);
-
     }
 
-    function getAvailableFields ()
+    function getAvailableFields()
     {
         // Available fields are those that are in the Model and the original layout definition, but not already shown in the View
         // So, because the formats of the two are different we brute force loop through View and unset the fields we find in a copy of Model
         $availableFields = $this->_getModelFields();
-        $GLOBALS['log']->debug( get_class($this)."->getAvailableFields(): _getModelFields returns: ".implode(",",array_keys($availableFields)));
-        if (! empty($this->_viewdefs))
+        $GLOBALS['log']->debug(get_class($this) . "->getAvailableFields(): _getModelFields returns: " . implode(",", array_keys($availableFields)));
+        if (!empty($this->_viewdefs))
         {
             foreach ($this->_viewdefs ['panels'] as $panel)
             {
@@ -140,7 +141,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                         if (isset($fieldArray ['name']))
                         {
                             unset($availableFields [$fieldArray ['name']]);
-                            $GLOBALS['log']->debug( get_class($this)."->getAvailableFields(): removing ".$fieldArray ['name'] );
+                            $GLOBALS['log']->debug(get_class($this) . "->getAvailableFields(): removing " . $fieldArray ['name']);
                         }
                     }
                 }
@@ -149,39 +150,38 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         return $availableFields;
     }
 
-    function getLayout ()
+    function getLayout()
     {
         return $this->_viewdefs ['panels'];
     }
 
-    function writeWorkingFile ()
+    function writeWorkingFile()
     {
-        $this->_writeToFile($this->_workingFile,$this->_view,$this->_module,$this->_viewdefs,$this->_variables);
+        $this->_writeToFile($this->_workingFile, $this->_view, $this->_module, $this->_viewdefs, $this->_variables);
     }
 
-    function handleSave ()
+    function handleSave()
     {
-        $this->_writeToFile($this->_customFile,$this->_view,$this->_module,$this->_viewdefs,$this->_variables);
+        $this->_writeToFile($this->_customFile, $this->_view, $this->_module, $this->_viewdefs, $this->_variables);
         // now clear the cache so that the results are immediately visible
         include_once('include/TemplateHandler/TemplateHandler.php');
         if (strtolower($this->_view) == 'quickcreate')
         {
-        	TemplateHandler::clearCache($this->_module,"form_SubPanelQuickCreate_{$this->_module}.tpl");
-        	TemplateHandler::clearCache($this->_module,"form_DCQuickCreate_{$this->_module}.tpl");
-        } 
-        else 
-        {
-        	TemplateHandler::clearCache($this->_module,"{$this->_view}.tpl");
+            TemplateHandler::clearCache($this->_module, "form_SubPanelQuickCreate_{$this->_module}.tpl");
+            TemplateHandler::clearCache($this->_module, "form_DCQuickCreate_{$this->_module}.tpl");
         }
-
+        else
+        {
+            TemplateHandler::clearCache($this->_module, "{$this->_view}.tpl");
+        }
     }
 
-    function loadModule ($module, $view)
+    function loadModule($module, $view)
     {
         $this->_viewdefs = array();
         $viewdefs = null;
 
-        $loaded = $this->_loadFromFile($view,$this->_sourceFile,$module);
+        $loaded = $this->_loadFromFile($view, $this->_sourceFile, $module);
         $this->_viewdefs = $loaded['viewdefs'][$module][$view];
         $this->_variables = $loaded['variables'];
     }
@@ -190,14 +190,14 @@ class ParserModifyLayoutView extends ModuleBuilderParser
      * Load the canonical panel layout from the submitted form
      *
      */
-    function _loadLayoutFromRequest ()
+    function _loadLayoutFromRequest()
     {
 
         $i = 1;
         // set up the map of panel# (as provided in the _REQUEST) to panel ID (as used in $this->_viewdefs['panels'])
         foreach ($this->_viewdefs ['panels'] as $panelID => $panel)
         {
-            $panelMap [$i ++] = $panelID;
+            $panelMap [$i++] = $panelID;
         }
         // replace any old values with new panel labels from the request
         foreach ($_REQUEST as $key => $value)
@@ -240,7 +240,8 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                     if ($value == '(filler)')
                     {
                         $this->_viewdefs ['panels'] [$panelID] [$rowID] [$colID] = NULL;
-                    } else
+                    }
+                    else
                     {
                         $this->_viewdefs ['panels'] [$panelID] [$rowID] [$colID] [$property] = $value;
                     }
@@ -264,10 +265,11 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                         // if a leading (empty) then remove (by noting that remaining fields need to be shuffled along)
                         if ($startOfRow)
                         {
-                            $offset ++;
+                            $offset++;
                         }
                         unset($row [$colID]);
-                    } else
+                    }
+                    else
                     {
                         $startOfRow = false;
                     }
@@ -284,9 +286,9 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         //          _pp($this->_viewdefs);
     }
 
-    function _padFields ()
+    function _padFields()
     {
-        if (! empty($this->_viewdefs))
+        if (!empty($this->_viewdefs))
         {
             foreach ($this->_viewdefs ['panels'] as $panelID => $panel)
             {
@@ -296,7 +298,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                     // pad between fields on a row
                     foreach ($row as $colID => $col)
                     {
-                        for ($i = $column + 1 ; $i < $colID ; $i ++ )
+                        for ($i = $column + 1; $i < $colID; $i++)
                         {
                             $row [$i] = array('name' => '(empty)', 'label' => '(empty)');
                         }
@@ -305,7 +307,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                     // now pad out to the end of the row
                     if (($column + 1) < $this->maxColumns)
                     { // last column is maxColumns-1
-                        for ($i = $column + 1 ; $i < $this->maxColumns ; $i ++ )
+                        for ($i = $column + 1; $i < $this->maxColumns; $i++)
                         {
                             $row [$i] = array('name' => '(empty)', 'label' => '(empty)');
                         }
@@ -317,14 +319,14 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         }
     }
 
-
     // add a new field to the end of a panel
     // don't write out (caller should call handleSave() when ready)
-    function _addField ($properties, $panelID = FALSE)
+    function _addField($properties, $panelID = FALSE)
     {
 
         // if a panelID was not passed, use the first available panel in the list
-        if (!$panelID) {
+        if (!$panelID)
+        {
             $panels = array_keys($this->_viewdefs['panels']);
             $panelID = $panels[0];
         }
@@ -333,13 +335,18 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         {
 
             // need to clean up the viewdefs before writing them -- Smarty will fail if any fillers/empties are present
-            foreach ($this->_viewdefs['panels'] as $loop_panelID => $panel_contents) {
-                foreach ($panel_contents as $row_id => $row) {
-                    foreach ($row as $col_id => $col) {
-                        if ($col['name'] == '(filler)') {
+            foreach ($this->_viewdefs['panels'] as $loop_panelID => $panel_contents)
+            {
+                foreach ($panel_contents as $row_id => $row)
+                {
+                    foreach ($row as $col_id => $col)
+                    {
+                        if ($col['name'] == '(filler)')
+                        {
                             $this->_viewdefs['panels'][$loop_panelID][$row_id][$col_id] = NULL;
                         }
-                        elseif ($col['name'] == '(empty)') {
+                        elseif ($col['name'] == '(empty)')
+                        {
                             unset($this->_viewdefs['panels'][$loop_panelID][$row_id][$col_id]);
                         }
                     }
@@ -354,7 +361,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
             //          print "lastrow=$lastrow lastcol=$lastcol";
             if ($lastcol >= $this->maxColumns)
             {
-                $lastrow ++;
+                $lastrow++;
                 $this->_viewdefs ['panels'] [$panelID] [$lastrow] = array();
                 $lastcol = 0;
             }
@@ -363,8 +370,9 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         }
     }
 
-    /* getModelFields returns an array of all fields stored in the database for this module plus those fields in the original layout definition (so we get fields such as Team ID)*/
-    function _getModelFields ()
+    /* getModelFields returns an array of all fields stored in the database for this module plus those fields in the original layout definition (so we get fields such as Team ID) */
+
+    function _getModelFields()
     {
         $modelFields = array();
         $origViewDefs = $this->_getOrigFieldViewDefs();
@@ -373,50 +381,52 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         {
             if (!empty($field))
             {
-                if (! is_array($def)) {
+                if (!is_array($def))
+                {
                     $def = array('name' => $field);
                 }
                 // get this field's label - if it has not been explicitly provided, see if the fieldDefs has a label for this field, and if not fallback to the field name
-                if (! isset($def ['label']))
-                        {
-                            if (! empty($this->_fieldDefs [$field] ['vname']))
-                            {
-                                $def ['label'] = $this->_fieldDefs [$field] ['vname'];
-                            } else
-                            {
-                                $def ['label'] = $field;
-                            }
-                        }
+                if (!isset($def ['label']))
+                {
+                    if (!empty($this->_fieldDefs [$field] ['vname']))
+                    {
+                        $def ['label'] = $this->_fieldDefs [$field] ['vname'];
+                    }
+                    else
+                    {
+                        $def ['label'] = $field;
+                    }
+                }
                 $modelFields[$field] = array('name' => $field, 'label' => $def ['label']);
             }
         }
-        $GLOBALS['log']->debug(print_r($modelFields,true));
+        $GLOBALS['log']->debug(print_r($modelFields, true));
         foreach ($this->_fieldDefs as $field => $def)
         {
             if ((!empty($def['studio']) && $def['studio'] == 'visible')
-            || (empty($def['studio']) &&  (empty($def ['source']) || $def ['source'] == 'db' || $def ['source'] == 'custom_fields') && $def ['type'] != 'id' && strcmp($field, 'deleted') != 0 && (empty($def ['dbType']) || $def ['dbType'] != 'id') && (empty($def ['dbtype']) || $def ['dbtype'] != 'id')))
+                    || (empty($def['studio']) && (empty($def ['source']) || $def ['source'] == 'db' || $def ['source'] == 'custom_fields') && $def ['type'] != 'id' && strcmp($field, 'deleted') != 0 && (empty($def ['dbType']) || $def ['dbType'] != 'id') && (empty($def ['dbtype']) || $def ['dbtype'] != 'id')))
             {
                 $label = isset($def['vname']) ? $def['vname'] : $def['name'];
                 $modelFields [$field] = array('name' => $field, 'label' => $label);
             }
             else
             {
-                $GLOBALS['log']->debug( get_class($this)."->_getModelFields(): skipping $field from modelFields as it fails the test for inclusion");
+                $GLOBALS['log']->debug(get_class($this) . "->_getModelFields(): skipping $field from modelFields as it fails the test for inclusion");
             }
         }
-        $GLOBALS['log']->debug( get_class($this)."->_getModelFields(): remaining entries in modelFields are: ".implode(",",array_keys($modelFields)));
+        $GLOBALS['log']->debug(get_class($this) . "->_getModelFields(): remaining entries in modelFields are: " . implode(",", array_keys($modelFields)));
         return $modelFields;
     }
 
-    function _parseData ($panels)
+    function _parseData($panels)
     {
         $fields = array();
         if (empty($panels))
-        return;
+            return;
 
         // Fix for a flexibility in the format of the panel sections - if only one panel, then we don't have a panel level defined, it goes straight into rows
         // See EditView2 for similar treatment
-        if (! empty($panels) && count($panels) > 0)
+        if (!empty($panels) && count($panels) > 0)
         {
             $keys = array_keys($panels);
             if (is_numeric($keys [0]))
@@ -435,37 +445,39 @@ class ParserModifyLayoutView extends ModuleBuilderParser
                 {
                     $properties = array();
 
-                    if (! empty($col))
+                    if (!empty($col))
                     {
                         if (is_string($col))
                         {
                             $properties ['name'] = $col;
-                        } else if (! empty($col ['name']))
+                        }
+                        else if (!empty($col ['name']))
                         {
                             $properties = $col;
                         }
-                    } else
+                    }
+                    else
                     {
                         $properties ['name'] = translate('LBL_FILLER');
                     }
 
-                    if (! empty($properties ['name']))
+                    if (!empty($properties ['name']))
                     {
 
                         // get this field's label - if it has not been explicity provided, see if the fieldDefs has a label for this field, and if not fallback to the field name
-                        if (! isset($properties ['label']))
+                        if (!isset($properties ['label']))
                         {
-                            if (! empty($this->_fieldDefs [$properties ['name']] ['vname']))
+                            if (!empty($this->_fieldDefs [$properties ['name']] ['vname']))
                             {
                                 $properties ['label'] = $this->_fieldDefs [$properties ['name']] ['vname'];
-                            } else
+                            }
+                            else
                             {
                                 $properties ['label'] = $properties ['name'];
                             }
                         }
 
                         $displayData[strtoupper($panelID)] [$rowID] [$colID] = $properties;
-
                     }
                 }
             }
@@ -473,10 +485,10 @@ class ParserModifyLayoutView extends ModuleBuilderParser
         return $displayData;
     }
 
-    function _getOrigFieldViewDefs ()
+    function _getOrigFieldViewDefs()
     {
         $origFieldDefs = array();
-        $GLOBALS['log']->debug("Original File = ".$this->_originalFile);
+        $GLOBALS['log']->debug("Original File = " . $this->_originalFile);
         if (file_exists($this->_originalFile))
         {
             include ($this->_originalFile);
@@ -484,7 +496,7 @@ class ParserModifyLayoutView extends ModuleBuilderParser
 //          $GLOBALS['log']->debug($origdefs);
             // Fix for a flexibility in the format of the panel sections - if only one panel, then we don't have a panel level defined, it goes straight into rows
             // See EditView2 for similar treatment
-            if (! empty($origdefs) && count($origdefs) > 0)
+            if (!empty($origdefs) && count($origdefs) > 0)
             {
                 $keys = array_keys($origdefs);
                 if (is_numeric($keys [0]))
@@ -518,4 +530,5 @@ class ParserModifyLayoutView extends ModuleBuilderParser
     }
 
 }
+
 ?>

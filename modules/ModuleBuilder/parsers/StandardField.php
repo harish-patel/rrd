@@ -1,7 +1,8 @@
 <?php
-if (! defined ( 'sugarEntry' ) || ! sugarEntry)
-    die ( 'Not A Valid Entry Point' ) ;
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -34,34 +35,37 @@ if (! defined ( 'sugarEntry' ) || ! sugarEntry)
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
-require_once ('modules/DynamicFields/DynamicField.php') ;
+require_once ('modules/DynamicFields/DynamicField.php');
 
 class StandardField extends DynamicField
 {
-	var $custom_def = array();
-	var $base_def = array();
-	var $baseField;
-	
 
-    function __construct($module = '') {
+    var $custom_def = array();
+    var $base_def = array();
+    var $baseField;
+
+    function __construct($module = '')
+    {
         parent::DynamicField($module);
     }
-    
-    protected function loadCustomDef($field){
-    	global $beanList;
-    	if (!empty($beanList[$this->module]) && is_file("custom/Extension/modules/{$this->module}/Ext/Vardefs/sugarfield_$field.php"))
-    	{
-    		$dictionary = array($beanList[$this->module] => array("fields" => array($field => array())));
+
+    protected function loadCustomDef($field)
+    {
+        global $beanList;
+        if (!empty($beanList[$this->module]) && is_file("custom/Extension/modules/{$this->module}/Ext/Vardefs/sugarfield_$field.php"))
+        {
+            $dictionary = array($beanList[$this->module] => array("fields" => array($field => array())));
             include("$this->base_path/sugarfield_$field.php");
             if (!empty($dictionary[$beanList[$this->module]]) && isset($dictionary[$beanList[$this->module]]["fields"][$field]))
                 $this->custom_def = $dictionary[$beanList[$this->module]]["fields"][$field];
-    	}
+        }
     }
 
-    protected function loadBaseDef($field){
+    protected function loadBaseDef($field)
+    {
         global $beanList;
         if (!empty($beanList[$this->module]) && is_file("modules/{$this->module}/vardefs.php"))
         {
@@ -71,17 +75,18 @@ class StandardField extends DynamicField
                 $this->base_def = $dictionary[$beanList[$this->module]]["fields"][$field];
         }
     }
-    
+
     /**
      * Adds a custom field using a field object
      *
      * @param Field Object $field
      * @return boolean
      */
-    function addFieldObject(&$field){
+    function addFieldObject(&$field)
+    {
         global $dictionary, $beanList;
-        
-        
+
+
         if (empty($beanList[$this->module]))
             return false;
 
@@ -94,14 +99,12 @@ class StandardField extends DynamicField
 
         // set $field->unified_search=true if field supports unified search
         // regarding #51427
-        if($field->supports_unified_search)
+        if ($field->supports_unified_search)
         {
-            if(isset($dictionary[$bean_name]['unified_search_default_enabled']) && isset($dictionary[$bean_name]['unified_search'])
-            && $dictionary[$bean_name]['unified_search_default_enabled'] && $dictionary[$bean_name]['unified_search'])
+            if (isset($dictionary[$bean_name]['unified_search_default_enabled']) && isset($dictionary[$bean_name]['unified_search'])
+                    && $dictionary[$bean_name]['unified_search_default_enabled'] && $dictionary[$bean_name]['unified_search'])
             {
-                $currdef['unified_search'] = $field->unified_search = isset($currdef['unified_search'])
-                 ? $currdef['unified_search']
-                 : true;
+                $currdef['unified_search'] = $field->unified_search = isset($currdef['unified_search']) ? $currdef['unified_search'] : true;
             }
         }
         // end #51427
@@ -109,52 +112,53 @@ class StandardField extends DynamicField
         $this->loadCustomDef($field->name);
         $this->loadBaseDef($field->name);
         $newDef = $field->get_field_def();
-        
-        require_once ('modules/DynamicFields/FieldCases.php') ;
-        $this->baseField = get_widget ( $field->type) ;
-        foreach ($field->vardef_map as $property => $fmd_col){
-           
-        	if ($property == "action" || $property == "label_value" || $property == "label"
-            	|| ((substr($property, 0,3) == 'ext' && strlen($property) == 4))
-            ) 
-            	continue;
-       	 		
+
+        require_once ('modules/DynamicFields/FieldCases.php');
+        $this->baseField = get_widget($field->type);
+        foreach ($field->vardef_map as $property => $fmd_col)
+        {
+
+            if ($property == "action" || $property == "label_value" || $property == "label"
+                    || ((substr($property, 0, 3) == 'ext' && strlen($property) == 4))
+            )
+                continue;
+
             // Bug 37043 - Avoid writing out vardef defintions that are the default value.
             if (isset($newDef[$property]) &&
-            	((!isset($currdef[$property]) && !$this->isDefaultValue($property,$newDef[$property], $this->baseField))
-            		|| (isset($currdef[$property]) && $currdef[$property] != $newDef[$property])
-            	)
-            ){
-            	$this->custom_def[$property] =
-                    is_string($newDef[$property]) ? htmlspecialchars_decode($newDef[$property], ENT_QUOTES) : $newDef[$property];
+                    ((!isset($currdef[$property]) && !$this->isDefaultValue($property, $newDef[$property], $this->baseField))
+                    || (isset($currdef[$property]) && $currdef[$property] != $newDef[$property])
+                    )
+            )
+            {
+                $this->custom_def[$property] =
+                        is_string($newDef[$property]) ? htmlspecialchars_decode($newDef[$property], ENT_QUOTES) : $newDef[$property];
             }
-            
+
             //Remove any orphaned entries
             if (isset($this->custom_def[$property]) && !isset($newDef[$property]))
-            	unset($this->custom_def[$property]);
+                unset($this->custom_def[$property]);
 
             //Handle overrides of out of the box definitions with empty
             if (!empty($this->base_def[$property]) && !isset($newDef[$property]))
             {
                 //Switch on type of the property to find what the correct 'empty' is.
-                if(is_string($this->base_def[$property]))
+                if (is_string($this->base_def[$property]))
                     $this->custom_def[$property] = "";
-                else if(is_array($this->base_def[$property]))
+                else if (is_array($this->base_def[$property]))
                     $this->custom_def[$property] = array();
-                else if(is_bool($this->base_def[$property]))
+                else if (is_bool($this->base_def[$property]))
                     $this->custom_def[$property] = false;
                 else
                     $this->custom_def[$property] = null;
             }
         }
-        
+
         if (isset($this->custom_def["duplicate_merge_dom_value"]) && !isset($this->custom_def["duplicate_merge"]))
-        	unset($this->custom_def["duplicate_merge_dom_value"]);
-        
+            unset($this->custom_def["duplicate_merge_dom_value"]);
+
         $this->writeVardefExtension($bean_name, $field, $this->custom_def);
     }
-    
-    
+
 }
 
 ?>

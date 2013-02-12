@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,10 +35,10 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
-require_once 'modules/ModuleBuilder/parsers/relationships/AbstractRelationship.php' ;
+require_once 'modules/ModuleBuilder/parsers/relationships/AbstractRelationship.php';
 
 /*
  * Class to manage the metadata for a One-To-Many Relationship
@@ -68,90 +70,90 @@ require_once 'modules/ModuleBuilder/parsers/relationships/AbstractRelationship.p
 
 class OneToManyRelationship extends AbstractRelationship
 {
-
     /*
      * Constructor
      * @param array $definition Parameters passed in as array defined in parent::$definitionKeys
      * The lhs_module value is for the One side; the rhs_module value is for the Many
      */
-    function __construct ($definition)
+
+    function __construct($definition)
     {
-        parent::__construct ( $definition ) ;
+        parent::__construct($definition);
     }
 
     /*
      * BUILD methods called during the build
      */
-    
+
     /*
      * Construct subpanel definitions
      * The format is that of TO_MODULE => relationship, FROM_MODULE, FROM_MODULES_SUBPANEL, mimicking the format in the layoutdefs.php
      * @return array    An array of subpanel definitions, keyed by the module
      */
-    function buildSubpanelDefinitions ()
-    {        
+
+    function buildSubpanelDefinitions()
+    {
         if ($this->relationship_only)
-            return array () ;
-        
+            return array();
+
         $source = "";
         if ($this->rhs_module == $this->lhs_module)
         {
-        	$source = $this->getJoinKeyLHS();
+            $source = $this->getJoinKeyLHS();
         }
- 
-        return array( 
-        	$this->lhs_module => $this->getSubpanelDefinition ( 
-        		$this->relationship_name, $this->rhs_module, $this->rhs_subpanel , $this->getRightModuleSystemLabel() , $source
-        	) 
+
+        return array(
+            $this->lhs_module => $this->getSubpanelDefinition(
+                    $this->relationship_name, $this->rhs_module, $this->rhs_subpanel, $this->getRightModuleSystemLabel(), $source
+            )
         );
     }
-
 
     /*
      * @return array    An array of field definitions, ready for the vardefs, keyed by module
      */
-	function buildVardefs ( )
+
+    function buildVardefs()
     {
-        $vardefs = array ( ) ;
-        
-        $vardefs [ $this->rhs_module ] [] = $this->getLinkFieldDefinition ( $this->lhs_module, $this->relationship_name, false,
-            'LBL_' . strtoupper ( $this->relationship_name . '_FROM_' . $this->getLeftModuleSystemLabel() ) . '_TITLE',
-            $this->relationship_only ? false : $this->getIDName( $this->lhs_module )
-        ) ;
-        if ($this->rhs_module != $this->lhs_module )
+        $vardefs = array();
+
+        $vardefs [$this->rhs_module] [] = $this->getLinkFieldDefinition($this->lhs_module, $this->relationship_name, false, 'LBL_' . strtoupper($this->relationship_name . '_FROM_' . $this->getLeftModuleSystemLabel()) . '_TITLE', $this->relationship_only ? false : $this->getIDName($this->lhs_module)
+        );
+        if ($this->rhs_module != $this->lhs_module)
         {
-        	$vardefs [ $this->lhs_module ] [] = $this->getLinkFieldDefinition ( $this->rhs_module, $this->relationship_name, true,
-                'LBL_' . strtoupper ( $this->relationship_name . '_FROM_' . $this->getRightModuleSystemLabel()  ) . '_TITLE');
+            $vardefs [$this->lhs_module] [] = $this->getLinkFieldDefinition($this->rhs_module, $this->relationship_name, true, 'LBL_' . strtoupper($this->relationship_name . '_FROM_' . $this->getRightModuleSystemLabel()) . '_TITLE');
         }
-        if (! $this->relationship_only)
+        if (!$this->relationship_only)
         {
-            $vardefs [ $this->rhs_module ] [] = $this->getRelateFieldDefinition ( $this->lhs_module, $this->relationship_name, $this->getLeftModuleSystemLabel() ) ;
-            $vardefs [ $this->rhs_module ] [] = $this->getLink2FieldDefinition ( $this->lhs_module, $this->relationship_name, true,
-                'LBL_' . strtoupper ( $this->relationship_name . '_FROM_' . $this->getRightModuleSystemLabel()  ) . '_TITLE');
+            $vardefs [$this->rhs_module] [] = $this->getRelateFieldDefinition($this->lhs_module, $this->relationship_name, $this->getLeftModuleSystemLabel());
+            $vardefs [$this->rhs_module] [] = $this->getLink2FieldDefinition($this->lhs_module, $this->relationship_name, true, 'LBL_' . strtoupper($this->relationship_name . '_FROM_' . $this->getRightModuleSystemLabel()) . '_TITLE');
         }
-        
-        return $vardefs ;
+
+        return $vardefs;
     }
-    
+
     /*
      * Define what fields to add to which modules layouts
      * @return array    An array of module => fieldname
      */
-    function buildFieldsToLayouts ()
+
+    function buildFieldsToLayouts()
     {
         if ($this->relationship_only)
-            return array () ;
- 
-        return array( $this->rhs_module =>$this->getValidDBName($this->relationship_name . "_name")); // this must match the name of the relate field from buildVardefs
+            return array();
+
+        return array($this->rhs_module => $this->getValidDBName($this->relationship_name . "_name")); // this must match the name of the relate field from buildVardefs
     }
-       
+
     /*
      * @return array    An array of relationship metadata definitions
      */
-    function buildRelationshipMetaData ()
+
+    function buildRelationshipMetaData()
     {
-        return array( $this->lhs_module => $this->getRelationshipMetaData ( MB_ONETOMANY ) ) ;
+        return array($this->lhs_module => $this->getRelationshipMetaData(MB_ONETOMANY));
     }
 
 }
+
 ?>
