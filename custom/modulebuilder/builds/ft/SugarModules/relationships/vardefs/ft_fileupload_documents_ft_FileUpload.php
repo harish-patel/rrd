@@ -1,5 +1,5 @@
 <?php
-// created: 2013-02-10 10:28:30
+// created: 2013-02-11 13:51:02
 $dictionary["ft_FileUpload"]["fields"]["ft_fileupload_documents"] = array (
   'name' => 'ft_fileupload_documents',
   'type' => 'link',
