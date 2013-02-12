@@ -40,12 +40,15 @@
 *}
 
 
-<div class="dashletPanelMenu wizard">
+<div class="dashletPanelMenu">
+<div class="hd"><div class="tl"></div><div class="hd-center"></div><div class="tr"></div></div>
 <div class="bd">
+		<div class="ml"></div>
+                <div class="bd-center">
 
 		<div class="screen">
 		
-{$MY_FRAME}
+{*$MY_FRAME*}
 {foreach  from=$ADMIN_GROUP_HEADER key=j item=val1}
    
    {if isset($GROUP_HEADER[$j][1])}
@@ -85,7 +88,9 @@
 
 </div>
 </div>
-
+			<div class="mr"></div>
+</div>
+<div class="ft"><div class="bl"></div><div class="ft-center"></div><div class="br"></div></div>
 </div>
 
 	

@@ -105,6 +105,13 @@ array (
             'name' => 'ft_fileupload_documents_name',
           ),
         ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'ft_fileupload_documents_name',
+          ),
+        ),
       ),
       'LBL_REVISIONS_PANEL' => 
       array (

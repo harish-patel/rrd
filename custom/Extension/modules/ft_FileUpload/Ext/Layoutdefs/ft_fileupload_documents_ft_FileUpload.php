@@ -1,5 +1,5 @@
 <?php
- // created: 2013-02-10 10:28:30
+ // created: 2013-02-11 13:51:02
 $layout_defs["ft_FileUpload"]["subpanel_setup"]['ft_fileupload_documents'] = array (
   'order' => 100,
   'module' => 'Documents',

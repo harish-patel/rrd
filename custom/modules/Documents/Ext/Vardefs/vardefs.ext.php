@@ -2,7 +2,7 @@
  //WARNING: The contents of this file are auto-generated
 
 
-// created: 2013-02-10 10:28:30
+// created: 2013-02-11 13:51:02
 $dictionary["Document"]["fields"]["ft_fileupload_documents"] = array (
   'name' => 'ft_fileupload_documents',
   'type' => 'link',

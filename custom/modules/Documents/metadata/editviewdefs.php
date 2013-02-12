@@ -113,6 +113,10 @@ array (
           array (
             'name' => 'ft_fileupload_documents_name',
           ),
+          1 => 
+          array (
+            'name' => 'ft_fileupload_documents_name',
+          ),
         ),
       ),
       'LBL_PANEL_ASSIGNMENT' => 
