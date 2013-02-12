@@ -679,6 +679,12 @@ div.moduleTitle
 /* editviews top buttons */
 #EditView > table {margin-bottom: 2px;}
 
+/* when ever possible enclose action buttons inside a table or div with this class */
+table.actionsContainer,div.actionsContainer
+{
+    margin-bottom: 10px;
+}
+
 /* editviews */
 .edit
 {
@@ -1468,7 +1474,7 @@ div.indent_right {
 }
 .monthHeader 
 { 
-    padding: 6px 5px 4px 3px;
+    padding: 7px 5px 7px 3px;
     margin-top: 10px;
     vertical-align: middle;
     background-repeat: repeat-x;
@@ -4019,7 +4025,7 @@ a.tabFormAdvLink:link, a.tabFormAdvLink:visited
 /* calendar styles */
 .monthCalBody
 {
-    background-color: #abc3d7;
+    background-color: #cccccc;
 }
 .monthFooter td 
 {
@@ -4114,11 +4120,29 @@ h5.calSharedUser
     border-radius: 6px 6px 6px 6px;
     box-shadow: 0 0 10px #CCCCCC;
 }
-.monthFooter{
+.monthHeader h3 
+{
+    color: #444;
+    text-shadow: 0px 1px #fff;
+}
+.monthFooter
+{
     float: left;
     padding: 9px 5px 11px 3px;
     width: 99%;
     vertical-align: middle;
+}
+#cal-grid{
+    background: #fff;
+}
+.monthHeader a, .monthFooter a {
+    color: #0E70B8;
+    font-size: 14px;
+    text-decoration: none;
+    text-shadow: 0 1px #FFFFFF;
+}
+.monthHeader a:hover, .monthFooter a:hover {
+    color: #0b578f;
 }
 /* for subpanel tabs */
 .subpanelTabForm
