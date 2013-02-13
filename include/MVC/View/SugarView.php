@@ -90,11 +90,8 @@ class SugarView
     /**
      * Constructor which will peform the setup.
      */
-    public function SugarView(
-    $bean = null, $view_object_map = array()
-    )
+    public function SugarView($bean = null, $view_object_map = array())
     {
-        
     }
 
     public function init(
