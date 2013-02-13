@@ -4439,7 +4439,7 @@ ul.clickMenu li a:hover{
     text-decoration: none !important;
 }
 ul.clickMenu li span { /*--Drop down trigger styles--*/
-    width: 22px;
+    width: 20px;
     height: 16px;
     float: left;
     background: url('../../../../index.php?entryPoint=getImage&imageName=actionMenuArrow.png') no-repeat 6px -28px;
@@ -4952,4 +4952,9 @@ span.id-ff.multiple button.button.lastChild{
     border-width: 0 2px 2px 2px;
     background:url(../../../../index.php?entryPoint=getImage&imageName=dp-bd.png) repeat; 
     margin-bottom: 10px;
+}
+
+.dateTime div
+{
+ margin-top: -5px
 }
