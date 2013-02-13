@@ -992,7 +992,8 @@ EOHTML;
 
         // Under the License referenced above, you are required to leave in all copyright statements in both
         // the code and end-user application.
-        $copyright = '&copy; 2004-2012 SugarCRM Inc. The Program is provided AS IS, without warranty.  Licensed under <a href="LICENSE.txt" target="_blank" class="copyRightLink">AGPLv3</a>.<br>This program is free software; you can redistribute it and/or modify it under the terms of the <br><a href="LICENSE.txt" target="_blank" class="copyRightLink"> GNU Affero General Public License version 3</a> as published by the Free Software Foundation, including the additional permission set forth in the source code header.<br>';
+        // $copyright = '&copy; 2004-2012 SugarCRM Inc. The Program is provided AS IS, without warranty.  Licensed under <a href="LICENSE.txt" target="_blank" class="copyRightLink">AGPLv3</a>.<br>This program is free software; you can redistribute it and/or modify it under the terms of the <br><a href="LICENSE.txt" target="_blank" class="copyRightLink"> GNU Affero General Public License version 3</a> as published by the Free Software Foundation, including the additional permission set forth in the source code header.<br>';
+        $copyright = 'Realty Redefined is powered by SugarCRM & is licensed under <a href="LICENSE.txt" target="_blank" class="copyRightLink">AGPLv3</a>.<br>';
 
         // The interactive user interfaces in modified source and object code
         // versions of this program must display Appropriate Legal Notices, as
@@ -1052,7 +1053,7 @@ EOHTML;
         $ss->assign("COMPANY_LOGO_URL", getJSPath($companyLogoURL) . "&logo_md5=" . $ss->get_template_vars("COMPANY_LOGO_MD5"));
 
         // Bug 38594 - Add in Trademark wording
-        $copyright .= 'SugarCRM is a trademark of SugarCRM, Inc. All other company and product names may be trademarks of the respective companies with which they are associated.<br />';
+        // $copyright .= 'SugarCRM is a trademark of SugarCRM, Inc. All other company and product names may be trademarks of the respective companies with which they are associated.<br />';
 
         //rrs bug: 20923 - if this image does not exist as per the license, then the proper image will be displayed regardless, so no need
         //to display an empty image here.
@@ -1107,9 +1108,7 @@ EOHTML;
      *
      * @return bool - the value of the option
      */
-    protected function _getOption(
-    $option, $default = false
-    )
+    protected function _getOption($option, $default = false)
     {
         if (!empty($this->options) && isset($this->options['show_all']))
         {
