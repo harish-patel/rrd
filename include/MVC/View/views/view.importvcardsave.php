@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,38 +35,42 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  TODO: To be written.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 require_once('include/vCard.php');
 
 class ViewImportvcardsave extends SugarView
 {
-	var $type = 'save';
+
+    var $type = 'save';
 
     public function __construct()
     {
- 		parent::SugarView();
- 	}
- 	
+        parent::SugarView();
+    }
+
     /**
      * @see SugarView::display()
      */
-	public function display()
+    public function display()
     {
-        if ( isset($_FILES['vcard']['tmp_name']) && isset($_FILES['vcard']['size']) > 0 ) {
+        if (isset($_FILES['vcard']['tmp_name']) && isset($_FILES['vcard']['size']) > 0)
+        {
             $vcard = new vCard();
-            $record = $vcard->importVCard($_FILES['vcard']['tmp_name'],$_REQUEST['module']);
+            $record = $vcard->importVCard($_FILES['vcard']['tmp_name'], $_REQUEST['module']);
             SugarApplication::redirect("index.php?action=DetailView&module={$_REQUEST['module']}&record=$record");
         }
         else
             SugarApplication::redirect("index.php?action=Importvcard&module={$_REQUEST['module']}");
- 	}
+    }
+
 }
+
 ?>

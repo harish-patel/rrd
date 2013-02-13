@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,7 +35,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 $view_config = array(
@@ -41,7 +43,7 @@ $view_config = array(
         'detailview' => array(
             'show_header' => true,
             'show_footer' => true,
-            'view_print'  => false,
+            'view_print' => false,
             'show_title' => true,
             'show_subpanels' => true,
             'show_javascript' => true,
@@ -55,7 +57,7 @@ $view_config = array(
             'config' => array(
                 'show_header' => false,
                 'show_footer' => false,
-                'view_print'  => false,
+                'view_print' => false,
                 'show_title' => true,
                 'show_subpanels' => true,
                 'show_javascript' => false,

@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,7 +33,7 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/DetailView/DetailView2.php');
 
@@ -44,16 +45,17 @@ require_once('include/DetailView/DetailView2.php');
  */
 class ViewDetail extends SugarView
 {
+
     /**
      * @see SugarView::$type
      */
     public $type = 'detail';
-	
+
     /**
      * @var DetailView2 object 
      */
     public $dv;
-	
+
     /**
      * Constructor
      *
@@ -63,27 +65,29 @@ class ViewDetail extends SugarView
     {
         parent::SugarView();
     }
-	
+
     /**
      * @see SugarView::preDisplay()
      */
     public function preDisplay()
     {
- 	    $metadataFile = $this->getMetaDataFile();
- 	    $this->dv = new DetailView2();
- 	    $this->dv->ss =&  $this->ss;
- 	    $this->dv->setup($this->module, $this->bean, $metadataFile, get_custom_file_if_exists('include/DetailView/DetailView.tpl'));
-    } 	
- 	
+        $metadataFile = $this->getMetaDataFile();
+        $this->dv = new DetailView2();
+        $this->dv->ss = & $this->ss;
+        $this->dv->setup($this->module, $this->bean, $metadataFile, get_custom_file_if_exists('include/DetailView/DetailView.tpl'));
+    }
+
     /**
      * @see SugarView::display()
      */
     public function display()
     {
-        if(empty($this->bean->id)){
+        if (empty($this->bean->id))
+        {
             sugar_die($GLOBALS['app_strings']['ERROR_NO_RECORD']);
-        }				
+        }
         $this->dv->process();
         echo $this->dv->display();
     }
+
 }

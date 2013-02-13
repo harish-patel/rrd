@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,31 +35,32 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  TODO: To be written.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
- 
+ * ****************************************************************************** */
+
 require_once('include/vCard.php');
 
 class ViewImportvcard extends SugarView
 {
-	var $type = 'edit';
+
+    var $type = 'edit';
 
     public function __construct()
     {
- 		parent::SugarView();
- 	}
- 	
-	/**
+        parent::SugarView();
+    }
+
+    /**
      * @see SugarView::display()
      */
-	public function display()
+    public function display()
     {
         global $mod_strings, $app_strings, $app_list_strings;
 
@@ -67,8 +70,10 @@ class ViewImportvcard extends SugarView
         $params = array();
         $params[] = "<a href='index.php?module={$_REQUEST['module']}&action=index'>{$mod_strings['LBL_MODULE_NAME']}</a>";
         $params[] = $app_strings['LBL_IMPORT_VCARD_BUTTON_LABEL'];
-		echo getClassicModuleTitle($mod_strings['LBL_MODULE_NAME'], $params, true);
+        echo getClassicModuleTitle($mod_strings['LBL_MODULE_NAME'], $params, true);
         $this->ss->display($this->getCustomFilePathIfExists('include/MVC/View/tpls/Importvcard.tpl'));
- 	}
+    }
+
 }
+
 ?>

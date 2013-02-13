@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,54 +35,62 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 
 require_once('include/Sugarpdf/SugarpdfFactory.php');
 
-class ViewSugarpdf extends SugarView{
-    
-    var $type ='sugarpdf';
+class ViewSugarpdf extends SugarView
+{
+
+    var $type = 'sugarpdf';
+
     /**
      * It is set by the "sugarpdf" request parameter and it is use by SugarpdfFactory to load the good sugarpdf class.
      * @var String
      */
-    var $sugarpdf='default';
+    var $sugarpdf = 'default';
+
     /**
      * The sugarpdf object (Include the TCPDF object).
      * The atributs of this object are destroy in the output method.
      * @var Sugarpdf object
      */
-    var $sugarpdfBean=NULL;
+    var $sugarpdfBean = NULL;
 
-    
-    function ViewSugarpdf(){
-         parent::SugarView();
-         if (isset($_REQUEST["sugarpdf"]))
-         	$this->sugarpdf = $_REQUEST["sugarpdf"];
-         else 
-        	header('Location:index.php?module='.$_REQUEST['module'].'&action=DetailView&record='.$_REQUEST['record']);
-     }
-     
-     function preDisplay(){
-         $this->sugarpdfBean = SugarpdfFactory::loadSugarpdf($this->sugarpdf, $this->module, $this->bean, $this->view_object_map);
-         
-         // ACL control
-        if(!empty($this->bean) && !$this->bean->ACLAccess($this->sugarpdfBean->aclAction)){
+    function ViewSugarpdf()
+    {
+        parent::SugarView();
+        if (isset($_REQUEST["sugarpdf"]))
+            $this->sugarpdf = $_REQUEST["sugarpdf"];
+        else
+            header('Location:index.php?module=' . $_REQUEST['module'] . '&action=DetailView&record=' . $_REQUEST['record']);
+    }
+
+    function preDisplay()
+    {
+        $this->sugarpdfBean = SugarpdfFactory::loadSugarpdf($this->sugarpdf, $this->module, $this->bean, $this->view_object_map);
+
+        // ACL control
+        if (!empty($this->bean) && !$this->bean->ACLAccess($this->sugarpdfBean->aclAction))
+        {
             ACLController::displayNoAccess(true);
             sugar_cleanup(true);
         }
-        
-        if(isset($this->errors)){
-          $this->sugarpdfBean->errors = $this->errors;
+
+        if (isset($this->errors))
+        {
+            $this->sugarpdfBean->errors = $this->errors;
         }
-     }
-     
-    function display(){
+    }
+
+    function display()
+    {
         $this->sugarpdfBean->process();
-        $this->sugarpdfBean->Output($this->sugarpdfBean->fileName,'I');
-     }
+        $this->sugarpdfBean->Output($this->sugarpdfBean->fileName, 'I');
+    }
 
 }
+
 ?>

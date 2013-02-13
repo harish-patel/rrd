@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry'))define('sugarEntry', true);
-/*********************************************************************************
+
+if (!defined('sugarEntry'))
+    define('sugarEntry', true);
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,25 +35,25 @@ if(!defined('sugarEntry'))define('sugarEntry', true);
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
-/* 
+/*
  * First step in removing getimage and getYUIComboFile -- at least this bypasses most of the app,
  * making assets load faster.
  */
-if( isset($_GET["entryPoint"]) )
+if (isset($_GET["entryPoint"]))
 {
-	if($_GET["entryPoint"] == "getImage")
+    if ($_GET["entryPoint"] == "getImage")
     {
-		require_once('include/SugarTheme/SugarTheme.php');
-		require_once('include/utils.php');
-		include("include/SugarTheme/getImage.php");
-		die();
-	}
-	else if($_GET["entryPoint"] == "getYUIComboFile")
+        require_once('include/SugarTheme/SugarTheme.php');
+        require_once('include/utils.php');
+        include("include/SugarTheme/getImage.php");
+        die();
+    }
+    else if ($_GET["entryPoint"] == "getYUIComboFile")
     {
-		include("include/javascript/getYUIComboFile.php");
-		die();
-	}
+        include("include/javascript/getYUIComboFile.php");
+        die();
+    }
 }

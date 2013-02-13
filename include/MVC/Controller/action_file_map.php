@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,7 +33,7 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /*
  * Created on Apr 23, 2007
@@ -46,5 +47,4 @@ $action_file_map['targetlistupdate'] = 'modules/ProspectLists/TargetListUpdate.p
 $action_file_map['deleterelationship'] = 'include/generic/DeleteRelationship.php';
 $action_file_map['import'] = 'modules/Import/index.php';
 $action_file_map['viewsugarfieldcollection'] = 'include/SugarFields/Fields/Collection/view.sugarfieldcollection.php';
-
 ?>

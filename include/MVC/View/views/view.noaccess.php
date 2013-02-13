@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,18 +33,19 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
-
+ * ****************************************************************************** */
 
 class ViewNoaccess extends SugarView
 {
-	public $type = 'noaccess';
-	
-	/**
-	 * @see SugarView::display()
-	 */
-	public function display()
-	{
-		echo '<p class="error">Warning: You do not have permission to access this module.</p>';
- 	}
+
+    public $type = 'noaccess';
+
+    /**
+     * @see SugarView::display()
+     */
+    public function display()
+    {
+        echo '<p class="error">Warning: You do not have permission to access this module.</p>';
+    }
+
 }

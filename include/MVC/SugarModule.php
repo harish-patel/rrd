@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,28 +35,27 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
-
+ * ****************************************************************************** */
 
 class SugarModule
 {
-    protected static $_instances = array();
 
+    protected static $_instances = array();
     protected $_moduleName;
 
     public static function get(
-        $moduleName
-        )
+    $moduleName
+    )
     {
-        if ( !isset(self::$_instances[$moduleName]) )
+        if (!isset(self::$_instances[$moduleName]))
             self::$_instances[$moduleName] = new SugarModule($moduleName);
 
         return self::$_instances[$moduleName];
     }
 
     public function __construct(
-        $moduleName
-        )
+    $moduleName
+    )
     {
         $this->_moduleName = $moduleName;
     }
@@ -66,15 +67,15 @@ class SugarModule
      * @return bool
      */
     public function moduleImplements(
-        $template
-        )
+    $template
+    )
     {
         $focus = self::loadBean();
 
-        if ( !$focus )
+        if (!$focus)
             return false;
 
-        return is_a($focus,$template);
+        return is_a($focus, $template);
     }
 
     /**
@@ -85,36 +86,46 @@ class SugarModule
     public function loadBean($beanList = null, $beanFiles = null, $returnObject = true)
     {
         // Populate these reference arrays
-        if ( empty($beanList) ) {
+        if (empty($beanList))
+        {
             global $beanList;
         }
-        if ( empty($beanFiles) ) {
+        if (empty($beanFiles))
+        {
             global $beanFiles;
         }
-        if ( !isset($beanList) || !isset($beanFiles) ) {
+        if (!isset($beanList) || !isset($beanFiles))
+        {
             require('include/modules.php');
         }
 
-        if ( isset($beanList[$this->_moduleName]) ) {
+        if (isset($beanList[$this->_moduleName]))
+        {
             $bean = $beanList[$this->_moduleName];
-            if (isset($beanFiles[$bean])) {
-                if ( !$returnObject ) {
+            if (isset($beanFiles[$bean]))
+            {
+                if (!$returnObject)
+                {
                     return true;
                 }
-                if ( !sugar_is_file($beanFiles[$bean]) ) {
+                if (!sugar_is_file($beanFiles[$bean]))
+                {
                     return false;
                 }
                 require_once($beanFiles[$bean]);
                 $focus = new $bean;
             }
-            else {
+            else
+            {
                 return false;
             }
         }
-        else {
+        else
+        {
             return false;
         }
 
         return $focus;
     }
+
 }

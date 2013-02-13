@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,18 +33,23 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/MVC/View/SugarView.php');
 
-class ViewHtml extends SugarView{
- 	function ViewHtml(){
- 		parent::SugarView();
- 	}
- 	
- 	function display(){
- 		
- 	}
- 	
+class ViewHtml extends SugarView
+{
+
+    function ViewHtml()
+    {
+        parent::SugarView();
+    }
+
+    function display()
+    {
+        
+    }
+
 }
+
 ?>

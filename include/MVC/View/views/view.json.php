@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,34 +33,43 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-class ViewJson extends SugarView{
-	var $type ='detail';
-	function ViewJson(){
- 		parent::SugarView();
- 	}
- 	
-	function display(){
- 		global $beanList;
-		$module = $GLOBALS['module'];
-		$json = getJSONobj();
-		$bean = $this->bean;
-		$all_fields = array_merge($bean->column_fields,$bean->additional_column_fields);
-		
-		$js_fields_arr = array();
-		foreach($all_fields as $field) {
-			if(isset($bean->$field)) {
-				$bean->$field = from_html($bean->$field);
-				$bean->$field = preg_replace('/\r\n/','<BR>',$bean->$field);
-				$bean->$field = preg_replace('/\n/','<BR>',$bean->$field);
-				$js_fields_arr[$field] = addslashes($bean->$field);
-			}
-		}
-		$out = $json->encode($js_fields_arr, true);
-		ob_clean();
-		print($out);
-		sugar_cleanup(true);
-	}
+class ViewJson extends SugarView
+{
+
+    var $type = 'detail';
+
+    function ViewJson()
+    {
+        parent::SugarView();
+    }
+
+    function display()
+    {
+        global $beanList;
+        $module = $GLOBALS['module'];
+        $json = getJSONobj();
+        $bean = $this->bean;
+        $all_fields = array_merge($bean->column_fields, $bean->additional_column_fields);
+
+        $js_fields_arr = array();
+        foreach ($all_fields as $field)
+        {
+            if (isset($bean->$field))
+            {
+                $bean->$field = from_html($bean->$field);
+                $bean->$field = preg_replace('/\r\n/', '<BR>', $bean->$field);
+                $bean->$field = preg_replace('/\n/', '<BR>', $bean->$field);
+                $js_fields_arr[$field] = addslashes($bean->$field);
+            }
+        }
+        $out = $json->encode($js_fields_arr, true);
+        ob_clean();
+        print($out);
+        sugar_cleanup(true);
+    }
+
 }
+
 ?>

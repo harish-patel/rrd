@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,7 +33,7 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /*
  * Created on Apr 13, 2007
@@ -42,16 +43,20 @@
  */
 
 require_once('include/EditView/EditView2.php');
- class ViewEdit extends SugarView{
- 	var $ev;
- 	var $type ='edit';
- 	var $useForSubpanel = false;  //boolean variable to determine whether view can be used for subpanel creates
- 	var $useModuleQuickCreateTemplate = false; //boolean variable to determine whether or not SubpanelQuickCreate has a separate display function
- 	var $showTitle = true;
 
- 	function ViewEdit(){
- 		parent::SugarView();
- 	}
+class ViewEdit extends SugarView
+{
+
+    var $ev;
+    var $type = 'edit';
+    var $useForSubpanel = false;  //boolean variable to determine whether view can be used for subpanel creates
+    var $useModuleQuickCreateTemplate = false; //boolean variable to determine whether or not SubpanelQuickCreate has a separate display function
+    var $showTitle = true;
+
+    function ViewEdit()
+    {
+        parent::SugarView();
+    }
 
     /**
      * @see SugarView::preDisplay()
@@ -60,14 +65,15 @@ require_once('include/EditView/EditView2.php');
     {
         $metadataFile = $this->getMetaDataFile();
         $this->ev = $this->getEditView();
-        $this->ev->ss =& $this->ss;
+        $this->ev->ss = & $this->ss;
         $this->ev->setup($this->module, $this->bean, $metadataFile, get_custom_file_if_exists('include/EditView/EditView.tpl'));
     }
 
- 	function display(){
-		$this->ev->process();
-		echo $this->ev->display($this->showTitle);
- 	}
+    function display()
+    {
+        $this->ev->process();
+        echo $this->ev->display($this->showTitle);
+    }
 
     /**
      * Get EditView object
@@ -77,5 +83,6 @@ require_once('include/EditView/EditView2.php');
     {
         return new EditView();
     }
+
 }
 
