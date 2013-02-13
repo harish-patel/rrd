@@ -258,7 +258,6 @@ class SugarView
             return;
         }
 
-
         $trackerManager = TrackerManager::getInstance();
         $timeStamp = TimeDate::getInstance()->nowDb();
         if ($monitor = $trackerManager->getMonitor('tracker'))
@@ -267,8 +266,7 @@ class SugarView
             $monitor->setValue('user_id', $GLOBALS['current_user']->id);
             $monitor->setValue('module_name', $this->module);
             $monitor->setValue('date_modified', $timeStamp);
-            $monitor->setValue('visible', (($monitor->action == 'detailview') || ($monitor->action == 'editview')
-                    ) ? 1 : 0);
+            $monitor->setValue('visible', (($monitor->action == 'detailview') || ($monitor->action == 'editview')) ? 1 : 0);
 
             if (!empty($this->bean->id))
             {
