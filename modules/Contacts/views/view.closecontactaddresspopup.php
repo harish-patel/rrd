@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,20 +33,26 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
- 
+
 require_once('include/MVC/View/views/view.list.php');
 
-class ContactsViewCloseContactAddressPopup extends ViewList {
-	
- 	function CloseContactAddressPopup(){
- 		parent::ViewList();
- 	}
+class ContactsViewCloseContactAddressPopup extends ViewList
+{
 
- 	function display() {
-        if(isset($_REQUEST['close_window'])) echo "<script>window.close();</script>";
+    function CloseContactAddressPopup()
+    {
+        parent::ViewList();
+    }
+
+    function display()
+    {
+        if (isset($_REQUEST['close_window']))
+            echo "<script>window.close();</script>";
         parent::display();
- 	}	
+    }
+
 }
+
 ?>

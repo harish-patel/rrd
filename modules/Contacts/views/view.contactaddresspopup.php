@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,31 +33,36 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 /**
  * ContactsViewContactAddressPopup
  * 
  * */
- 
 require_once('include/MVC/View/SugarView.php');
 require_once('modules/Contacts/Popup_picker.php');
 
-class ContactsViewContactAddressPopup extends SugarView {
-	
- 	function ContactsViewContactAddressPopup(){
- 		parent::SugarView();
- 	}
- 	
- 	function process() {
-		$this->display();
- 	}
+class ContactsViewContactAddressPopup extends SugarView
+{
 
- 	function display() {
- 		$this->renderJavascript();
- 		$popup = new Popup_Picker();
-		echo $popup->process_page_for_address();
- 	}	
+    function ContactsViewContactAddressPopup()
+    {
+        parent::SugarView();
+    }
+
+    function process()
+    {
+        $this->display();
+    }
+
+    function display()
+    {
+        $this->renderJavascript();
+        $popup = new Popup_Picker();
+        echo $popup->process_page_for_address();
+    }
+
 }
+
 ?>

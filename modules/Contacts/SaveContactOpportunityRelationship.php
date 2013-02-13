@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,15 +35,15 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  TODO: To be written.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('modules/Contacts/ContactOpportunityRelationship.php');
 
@@ -52,18 +54,18 @@ $focus = new ContactOpportunityRelationship();
 
 $focus->retrieve($_REQUEST['record']);
 
-foreach($focus->column_fields as $field)
+foreach ($focus->column_fields as $field)
 {
-	safe_map($field, $focus, true);
+    safe_map($field, $focus, true);
 }
 
-foreach($focus->additional_column_fields as $field)
+foreach ($focus->additional_column_fields as $field)
 {
-	safe_map($field, $focus, true);
+    safe_map($field, $focus, true);
 }
 
 // send them to the edit screen.
-if(isset($_REQUEST['record']) && $_REQUEST['record'] != "")
+if (isset($_REQUEST['record']) && $_REQUEST['record'] != "")
 {
     $recordID = $_REQUEST['record'];
 }
@@ -71,7 +73,7 @@ if(isset($_REQUEST['record']) && $_REQUEST['record'] != "")
 $focus->save();
 $recordID = $focus->id;
 
-$GLOBALS['log']->debug("Saved record with id of ".$recordID);
+$GLOBALS['log']->debug("Saved record with id of " . $recordID);
 
 $header_URL = "Location: index.php?action={$_REQUEST['return_action']}&module={$_REQUEST['return_module']}&record={$_REQUEST['return_id']}";
 $GLOBALS['log']->debug("about to post header URL of: $header_URL");

@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,37 +33,43 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
-
+ * ****************************************************************************** */
 
 class ContactsController extends SugarController
 {
-	function action_Popup(){
-		if(!empty($_REQUEST['html']) && $_REQUEST['html'] == 'mail_merge'){
-			$this->view = 'mailmergepopup';
-		}else{
-			$this->view = 'popup';
-		}
-	}
-	
+
+    function action_Popup()
+    {
+        if (!empty($_REQUEST['html']) && $_REQUEST['html'] == 'mail_merge')
+        {
+            $this->view = 'mailmergepopup';
+        }
+        else
+        {
+            $this->view = 'popup';
+        }
+    }
+
     function action_ValidPortalUsername()
     {
-		$this->view = 'validportalusername';
+        $this->view = 'validportalusername';
     }
 
     function action_RetrieveEmail()
     {
-        $this->view = 'retrieveemail';	
+        $this->view = 'retrieveemail';
     }
 
     function action_ContactAddressPopup()
     {
-		$this->view = 'contactaddresspopup';
+        $this->view = 'contactaddresspopup';
     }
-  
+
     function action_CloseContactAddressPopup()
     {
-    	$this->view = 'closecontactaddresspopup';
-    }    
+        $this->view = 'closecontactaddresspopup';
+    }
+
 }
+
 ?>

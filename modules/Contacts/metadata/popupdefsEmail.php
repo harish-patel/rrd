@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,27 +35,27 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 global $mod_strings;
 
 $popupMeta = array('moduleMain' => 'Contact',
-						'varName' => 'CONTACT',
-						'orderBy' => 'contacts.first_name, contacts.last_name',
-						'whereClauses' => 
-							array('first_name' => 'contacts.first_name', 
-									'last_name' => 'contacts.last_name',
-									'account_name' => 'accounts.name',
-									'account_id' => 'accounts.id'),
-						'searchInputs' =>
-							array('first_name', 'last_name', 'account_name'),
-						'create' =>
-							array('formBase' => 'ContactFormBase.php',
-									'formBaseClass' => 'ContactFormBase',
-									'getFormBodyParams' => array('','','ContactSave'),
-									'createButton' => 'LNK_NEW_CONTACT'
-								  ),
-						'templateForm' => 'modules/Contacts/Email_picker.html',
-						);
+    'varName' => 'CONTACT',
+    'orderBy' => 'contacts.first_name, contacts.last_name',
+    'whereClauses' =>
+    array('first_name' => 'contacts.first_name',
+        'last_name' => 'contacts.last_name',
+        'account_name' => 'accounts.name',
+        'account_id' => 'accounts.id'),
+    'searchInputs' =>
+    array('first_name', 'last_name', 'account_name'),
+    'create' =>
+    array('formBase' => 'ContactFormBase.php',
+        'formBaseClass' => 'ContactFormBase',
+        'getFormBodyParams' => array('', '', 'ContactSave'),
+        'createButton' => 'LNK_NEW_CONTACT'
+    ),
+    'templateForm' => 'modules/Contacts/Email_picker.html',
+);
 ?>

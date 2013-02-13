@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,25 +35,31 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 require_once('modules/SugarFeed/feedLogicBase.php');
 
+class ContactFeed extends FeedLogicBase
+{
 
-class ContactFeed extends FeedLogicBase{
     var $module = 'Contacts';
-    function pushFeed($bean, $event, $arguments){
-    	global $locale;
+
+    function pushFeed($bean, $event, $arguments)
+    {
+        global $locale;
         $text = '';
-        if(empty($bean->fetched_row)){
-            $text =  '{SugarFeed.CREATED_CONTACT} [' . $bean->module_dir . ':' . $bean->id . ':' . $locale->getLocaleFormattedName($bean->first_name, $bean->last_name) . ']';
+        if (empty($bean->fetched_row))
+        {
+            $text = '{SugarFeed.CREATED_CONTACT} [' . $bean->module_dir . ':' . $bean->id . ':' . $locale->getLocaleFormattedName($bean->first_name, $bean->last_name) . ']';
         }
-		
-        if(!empty($text)){ 
-			SugarFeed::pushFeed2($text, $bean);
+
+        if (!empty($text))
+        {
+            SugarFeed::pushFeed2($text, $bean);
         }
-		
     }
+
 }
+
 ?>
