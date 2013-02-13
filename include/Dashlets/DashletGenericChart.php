@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,13 +35,14 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 require_once('include/Dashlets/Dashlet.php');
 require_once('include/generic/LayoutManager.php');
 
 abstract class DashletGenericChart extends Dashlet
 {
+
     /**
      * The title of the dashlet
      * @var string
@@ -54,7 +57,7 @@ abstract class DashletGenericChart extends Dashlet
     /**
      * @see Dashlet::$isRefreshable
      */
-    public $isRefreshable  = true;
+    public $isRefreshable = true;
 
     /**
      * location of smarty template file for configuring
@@ -86,7 +89,6 @@ abstract class DashletGenericChart extends Dashlet
      */
     private $_configureSS;
 
-
     /**
      * Constructor
      *
@@ -94,21 +96,23 @@ abstract class DashletGenericChart extends Dashlet
      * @param array $options
      */
     public function __construct(
-        $id,
-        array $options = null
-        )
+    $id, array $options = null
+    )
     {
         parent::Dashlet($id);
 
-        if ( isset($options) ) {
-            foreach ( $options as $key => $value ) {
+        if (isset($options))
+        {
+            foreach ($options as $key => $value)
+            {
                 $this->$key = $value;
             }
         }
 
         // load searchfields
         $classname = get_class($this);
-        if ( is_file("modules/Charts/Dashlets/$classname/$classname.data.php") ) {
+        if (is_file("modules/Charts/Dashlets/$classname/$classname.data.php"))
+        {
             require("modules/Charts/Dashlets/$classname/$classname.data.php");
             $this->_searchFields = $dashletData[$classname]['searchFields'];
         }
@@ -116,9 +120,9 @@ abstract class DashletGenericChart extends Dashlet
         // load language files
         $this->loadLanguage($classname, 'modules/Charts/Dashlets/');
 
-        if ( empty($options['title']) )
+        if (empty($options['title']))
             $this->title = $this->dashletStrings['LBL_TITLE'];
-        if ( isset($options['autoRefresh']) )
+        if (isset($options['autoRefresh']))
             $this->autoRefresh = $options['autoRefresh'];
 
         $this->layoutManager = new LayoutManager();
@@ -134,12 +138,11 @@ abstract class DashletGenericChart extends Dashlet
      */
     public function setRefreshIcon()
     {
-    	$additionalTitle = '';
-        if($this->isRefreshable)
-
-            $additionalTitle .= '<a href="#" onclick="SUGAR.mySugar.retrieveDashlet(\'' 
-                                . $this->id . '\',\'predefined_chart\'); return false;"><!--not_in_theme!--><img border="0" title="' . translate('LBL_DASHLET_REFRESH', 'Home') . '" alt="' . translate('LBL_DASHLET_REFRESH', 'Home') . '" src="'
-                                . SugarThemeRegistry::current()->getImageURL('dashlet-header-refresh.png').'"/></a>';    	
+        $additionalTitle = '';
+        if ($this->isRefreshable)
+            $additionalTitle .= '<a href="#" onclick="SUGAR.mySugar.retrieveDashlet(\''
+                    . $this->id . '\',\'predefined_chart\'); return false;"><!--not_in_theme!--><img border="0" title="' . translate('LBL_DASHLET_REFRESH', 'Home') . '" alt="' . translate('LBL_DASHLET_REFRESH', 'Home') . '" src="'
+                    . SugarThemeRegistry::current()->getImageURL('dashlet-header-refresh.png') . '"/></a>';
 
         return $additionalTitle;
     }
@@ -152,10 +155,9 @@ abstract class DashletGenericChart extends Dashlet
     public function displayScript()
     {
 
-		require_once('include/SugarCharts/SugarChartFactory.php');
-		$sugarChart = SugarChartFactory::getInstance();
-		return $sugarChart->getDashletScript($this->id);
-
+        require_once('include/SugarCharts/SugarChartFactory.php');
+        $sugarChart = SugarChartFactory::getInstance();
+        return $sugarChart->getDashletScript($this->id);
     }
 
     /**
@@ -164,7 +166,8 @@ abstract class DashletGenericChart extends Dashlet
      */
     protected function getConfigureSmartyInstance()
     {
-        if ( !($this->_configureSS instanceof Sugar_Smarty) ) {
+        if (!($this->_configureSS instanceof Sugar_Smarty))
+        {
 
             $this->_configureSS = new Sugar_Smarty();
         }
@@ -180,25 +183,27 @@ abstract class DashletGenericChart extends Dashlet
      * @return array
      */
     public function saveOptions(
-        $req
-        )
+    $req
+    )
     {
         global $timedate;
 
         $options = array();
 
-        foreach($req as $name => $value)
-            if(!is_array($value)) $req[$name] = trim($value);
+        foreach ($req as $name => $value)
+            if (!is_array($value))
+                $req[$name] = trim($value);
 
-        foreach($this->_searchFields as $name => $params) {
+        foreach ($this->_searchFields as $name => $params)
+        {
             $widgetDef = $params;
-            if ( isset($this->getSeedBean()->field_defs[$name]) )
+            if (isset($this->getSeedBean()->field_defs[$name]))
                 $widgetDef = $this->getSeedBean()->field_defs[$name];
-            if ( $widgetDef['type'] == 'date')           // special case date types
-                $options[$widgetDef['name']] = $timedate->swap_formats($req['type_'.$widgetDef['name']], $timedate->get_date_format(), $timedate->dbDayFormat);
-            elseif ( $widgetDef['type'] == 'time')       // special case time types
-                $options[$widgetDef['name']] = $timedate->swap_formats($req['type_'.$widgetDef['name']], $timedate->get_time_format(), $timedate->dbTimeFormat);
-            elseif ( $widgetDef['type'] == 'datepicker') // special case datepicker types
+            if ($widgetDef['type'] == 'date')           // special case date types
+                $options[$widgetDef['name']] = $timedate->swap_formats($req['type_' . $widgetDef['name']], $timedate->get_date_format(), $timedate->dbDayFormat);
+            elseif ($widgetDef['type'] == 'time')       // special case time types
+                $options[$widgetDef['name']] = $timedate->swap_formats($req['type_' . $widgetDef['name']], $timedate->get_time_format(), $timedate->dbTimeFormat);
+            elseif ($widgetDef['type'] == 'datepicker') // special case datepicker types
                 $options[$widgetDef['name']] = $timedate->swap_formats($req[$widgetDef['name']], $timedate->get_date_format(), $timedate->dbDayFormat);
             elseif (!empty($req[$widgetDef['name']]))
                 $options[$widgetDef['name']] = $req[$widgetDef['name']];
@@ -221,26 +226,31 @@ abstract class DashletGenericChart extends Dashlet
     {
         $currentSearchFields = array();
 
-        if ( is_array($this->_searchFields) ) {
-            foreach($this->_searchFields as $name=>$params) {
-                if(!empty($name)) {
+        if (is_array($this->_searchFields))
+        {
+            foreach ($this->_searchFields as $name => $params)
+            {
+                if (!empty($name))
+                {
                     $name = strtolower($name);
                     $currentSearchFields[$name] = array();
 
                     $widgetDef = $params;
-                    if ( isset($this->getSeedBean()->field_defs[$name]) )
+                    if (isset($this->getSeedBean()->field_defs[$name]))
                         $widgetDef = $this->getSeedBean()->field_defs[$name];
 
-                    if($widgetDef['type'] == 'enum' || $widgetDef['type'] == 'singleenum') $widgetDef['remove_blank'] = true; // remove the blank option for the dropdown
+                    if ($widgetDef['type'] == 'enum' || $widgetDef['type'] == 'singleenum')
+                        $widgetDef['remove_blank'] = true; // remove the blank option for the dropdown
 
-                    if ( empty($widgetDef['input_name0']) )
+                    if (empty($widgetDef['input_name0']))
                         $widgetDef['input_name0'] = empty($this->$name) ? '' : $this->$name;
                     $currentSearchFields[$name]['label'] = translate($widgetDef['vname'], $this->getSeedBean()->module_dir);
-                    if ( $currentSearchFields[$name]['label'] == $widgetDef['vname'] )
+                    if ($currentSearchFields[$name]['label'] == $widgetDef['vname'])
                         $currentSearchFields[$name]['label'] = translate($widgetDef['vname'], 'Charts');
                     $currentSearchFields[$name]['input'] = $this->layoutManager->widgetDisplayInput($widgetDef, true, (empty($this->$name) ? '' : $this->$name));
                 }
-                else { // ability to create spacers in input fields
+                else
+                { // ability to create spacers in input fields
                     $currentSearchFields['blank' + $count]['label'] = '';
                     $currentSearchFields['blank' + $count]['input'] = '';
                     $count++;
@@ -248,22 +258,23 @@ abstract class DashletGenericChart extends Dashlet
             }
         }
         $this->currentSearchFields = $currentSearchFields;
-        $this->getConfigureSmartyInstance()->assign('title',translate('LBL_TITLE','Charts'));
-        $this->getConfigureSmartyInstance()->assign('save',$GLOBALS['app_strings']['LBL_SAVE_BUTTON_LABEL']);
-        $this->getConfigureSmartyInstance()->assign('clear',$GLOBALS['app_strings']['LBL_CLEAR_BUTTON_LABEL']);
+        $this->getConfigureSmartyInstance()->assign('title', translate('LBL_TITLE', 'Charts'));
+        $this->getConfigureSmartyInstance()->assign('save', $GLOBALS['app_strings']['LBL_SAVE_BUTTON_LABEL']);
+        $this->getConfigureSmartyInstance()->assign('clear', $GLOBALS['app_strings']['LBL_CLEAR_BUTTON_LABEL']);
         $this->getConfigureSmartyInstance()->assign('id', $this->id);
         $this->getConfigureSmartyInstance()->assign('searchFields', $this->currentSearchFields);
         $this->getConfigureSmartyInstance()->assign('dashletTitle', $this->title);
         $this->getConfigureSmartyInstance()->assign('dashletType', 'predefined_chart');
         $this->getConfigureSmartyInstance()->assign('module', $_REQUEST['module']);
         $this->getConfigureSmartyInstance()->assign('showClearButton', $this->isConfigPanelClearShown);
-        
-        if($this->isAutoRefreshable()) {
-       		$this->getConfigureSmartyInstance()->assign('isRefreshable', true);
-			$this->getConfigureSmartyInstance()->assign('autoRefresh', $GLOBALS['app_strings']['LBL_DASHLET_CONFIGURE_AUTOREFRESH']);
-			$this->getConfigureSmartyInstance()->assign('autoRefreshOptions', $this->getAutoRefreshOptions());
-			$this->getConfigureSmartyInstance()->assign('autoRefreshSelect', $this->autoRefresh);
-		}
+
+        if ($this->isAutoRefreshable())
+        {
+            $this->getConfigureSmartyInstance()->assign('isRefreshable', true);
+            $this->getConfigureSmartyInstance()->assign('autoRefresh', $GLOBALS['app_strings']['LBL_DASHLET_CONFIGURE_AUTOREFRESH']);
+            $this->getConfigureSmartyInstance()->assign('autoRefreshOptions', $this->getAutoRefreshOptions());
+            $this->getConfigureSmartyInstance()->assign('autoRefreshSelect', $this->autoRefresh);
+        }
 
         return parent::displayOptions() . $this->getConfigureSmartyInstance()->fetch($this->_configureTpl);
     }
@@ -276,7 +287,7 @@ abstract class DashletGenericChart extends Dashlet
      */
     protected function getSeedBean()
     {
-        if ( !($this->_seedBean instanceof SugarBean) )
+        if (!($this->_seedBean instanceof SugarBean))
             $this->_seedBean = SugarModule::get($this->_seedName)->loadBean();
 
         return $this->_seedBean;
@@ -322,37 +333,45 @@ abstract class DashletGenericChart extends Dashlet
     {
         global $sugar_config;
 
-        if ( empty($dashletOffset) ) {
+        if (empty($dashletOffset))
+        {
             $dashletOffset = 0;
             $module = $_REQUEST['module'];
-            if(isset($_REQUEST[$module.'2_'.strtoupper($this->getSeedBean()->object_name).'_offset'])) {
-            	$dashletOffset = $_REQUEST[$module.'2_'.strtoupper($this->getSeedBean()->object_name).'_offset'];
+            if (isset($_REQUEST[$module . '2_' . strtoupper($this->getSeedBean()->object_name) . '_offset']))
+            {
+                $dashletOffset = $_REQUEST[$module . '2_' . strtoupper($this->getSeedBean()->object_name) . '_offset'];
             }
         }
 
-        if ( !$this->isRefreshable ) {
+        if (!$this->isRefreshable)
+        {
             return '';
         }
-        if ( !empty($sugar_config['dashlet_auto_refresh_min']) && $sugar_config['dashlet_auto_refresh_min'] == -1 ) {
+        if (!empty($sugar_config['dashlet_auto_refresh_min']) && $sugar_config['dashlet_auto_refresh_min'] == -1)
+        {
             return '';
         }
         $autoRefreshSS = new Sugar_Smarty();
         $autoRefreshSS->assign('dashletOffset', $dashletOffset);
         $autoRefreshSS->assign('dashletId', $this->id);
-        $autoRefreshSS->assign('strippedDashletId', str_replace("-","",$this->id)); //javascript doesn't like "-" in function names
-        if ( empty($this->autoRefresh) ) {
+        $autoRefreshSS->assign('strippedDashletId', str_replace("-", "", $this->id)); //javascript doesn't like "-" in function names
+        if (empty($this->autoRefresh))
+        {
             $this->autoRefresh = 0;
         }
-        elseif ( !empty($sugar_config['dashlet_auto_refresh_min']) && $sugar_config['dashlet_auto_refresh_min'] > $this->autoRefresh ) {
+        elseif (!empty($sugar_config['dashlet_auto_refresh_min']) && $sugar_config['dashlet_auto_refresh_min'] > $this->autoRefresh)
+        {
             $this->autoRefresh = $sugar_config['dashlet_auto_refresh_min'];
         }
         $autoRefreshSS->assign('dashletRefreshInterval', $this->autoRefresh * 1000);
         $autoRefreshSS->assign('url', "predefined_chart");
         $tpl = 'include/Dashlets/DashletGenericAutoRefresh.tpl';
-        if ( $_REQUEST['action'] == "DynamicAction" ) {
+        if ($_REQUEST['action'] == "DynamicAction")
+        {
             $tpl = 'include/Dashlets/DashletGenericAutoRefreshDynamic.tpl';
         }
 
         return $autoRefreshSS->fetch($tpl);
     }
+
 }

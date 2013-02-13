@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,84 +33,101 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
-
+ * ****************************************************************************** */
 
 /**
  * Class for parsing title from RSS feed, and keep default encoding (UTF-8)
  * Created: Sep 12, 2011
  */
-class DashletRssFeedTitle {
-	public $defaultEncoding = "UTF-8";
-	public $readBytes = 8192;
-	public $url;
-	public $cut = 70;
-	public $contents = "";
-	public $title = "";
-	public $endWith = "...";
-	public $xmlEncoding = false;
-	public $fileOpen = false;
+class DashletRssFeedTitle
+{
 
-	public function __construct($url) {
-		$this->url = $url;
-	}
+    public $defaultEncoding = "UTF-8";
+    public $readBytes = 8192;
+    public $url;
+    public $cut = 70;
+    public $contents = "";
+    public $title = "";
+    public $endWith = "...";
+    public $xmlEncoding = false;
+    public $fileOpen = false;
 
-	public function generateTitle() {
-		if ($this->readFeed()) {
-			$this->getTitle();
-			if (!empty($this->title)) {
-				$this->convertEncoding();
-				$this->cutLength();
-			}
-		}
-		return $this->title;
-	}
+    public function __construct($url)
+    {
+        $this->url = $url;
+    }
 
-	/**
-	 * @todo use curl with waiting timeout instead of fopen
-	 */
-	public function readFeed() {
-		if ($this->url) {
-			$fileOpen = @fopen($this->url, 'r');
-			if ($fileOpen) {
-				$this->fileOpen = true;
-				$this->contents = fread($fileOpen, $this->readBytes);
-				fclose($fileOpen);
-				return true;
-			}
-		}
-		return false;
-	}
+    public function generateTitle()
+    {
+        if ($this->readFeed())
+        {
+            $this->getTitle();
+            if (!empty($this->title))
+            {
+                $this->convertEncoding();
+                $this->cutLength();
+            }
+        }
+        return $this->title;
+    }
 
-	/**
-	 *
-	 */
-	public function getTitle() {
-		$matches = array ();
-		preg_match("/<title>.*?<\/title>/i", $this->contents, $matches);
-		if (isset($matches[0])) {
-			$this->title = str_replace(array('<![CDATA[', '<title>', '</title>', ']]>'), '', $matches[0]);
-		}
-	}
+    /**
+     * @todo use curl with waiting timeout instead of fopen
+     */
+    public function readFeed()
+    {
+        if ($this->url)
+        {
+            $fileOpen = @fopen($this->url, 'r');
+            if ($fileOpen)
+            {
+                $this->fileOpen = true;
+                $this->contents = fread($fileOpen, $this->readBytes);
+                fclose($fileOpen);
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public function cutLength() {
-		if (mb_strlen(trim($this->title), $this->defaultEncoding) > $this->cut) {
-			$this->title = mb_substr($this->title, 0, $this->cut, $this->defaultEncoding) . $this->endWith;
-		}
-	}
+    /**
+     *
+     */
+    public function getTitle()
+    {
+        $matches = array();
+        preg_match("/<title>.*?<\/title>/i", $this->contents, $matches);
+        if (isset($matches[0]))
+        {
+            $this->title = str_replace(array('<![CDATA[', '<title>', '</title>', ']]>'), '', $matches[0]);
+        }
+    }
 
-	private function _identifyXmlEncoding() {
-		$matches = array ();
-		preg_match('/encoding\=*\".*?\"/', $this->contents, $matches);
-		if (isset($matches[0])) {
-			$this->xmlEncoding = trim(str_replace('encoding="', '"', $matches[0]), '"');
-		}
-	}
+    public function cutLength()
+    {
+        if (mb_strlen(trim($this->title), $this->defaultEncoding) > $this->cut)
+        {
+            $this->title = mb_substr($this->title, 0, $this->cut, $this->defaultEncoding) . $this->endWith;
+        }
+    }
 
-	public function convertEncoding() {
-		$this->_identifyXmlEncoding();
-		if ($this->xmlEncoding && $this->xmlEncoding != $this->defaultEncoding) {
-			$this->title = iconv($this->xmlEncoding, $this->defaultEncoding, $this->title);
-		}
-	}
+    private function _identifyXmlEncoding()
+    {
+        $matches = array();
+        preg_match('/encoding\=*\".*?\"/', $this->contents, $matches);
+        if (isset($matches[0]))
+        {
+            $this->xmlEncoding = trim(str_replace('encoding="', '"', $matches[0]), '"');
+        }
+    }
+
+    public function convertEncoding()
+    {
+        $this->_identifyXmlEncoding();
+        if ($this->xmlEncoding && $this->xmlEncoding != $this->defaultEncoding)
+        {
+            $this->title = iconv($this->xmlEncoding, $this->defaultEncoding, $this->title);
+        }
+    }
+
 }
