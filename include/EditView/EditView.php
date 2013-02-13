@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,23 +35,27 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /**
  * Old EditView
  * @deprecated
  */
-class EditView {
+class EditView
+{
+
     /**
      * smarty object
      * @var object
      */
     var $ss;
+
     /**
      * location of template to use
      * @var string
      */
     var $template;
+
     /**
      * Module to use
      * @var string
@@ -61,7 +67,8 @@ class EditView {
      * @param string $module module to use
      * @param string $template template of the form to retreive
      */
-    function EditView($module, $template) {
+    function EditView($module, $template)
+    {
         $this->module = $module;
         $this->template = $template;
         $this->ss = new Sugar_Smarty();
@@ -72,8 +79,10 @@ class EditView {
      * assigns all things to the template like mod_srings and app_strings
      *
      */
-    function process() {
-        global $current_language, $app_strings, $sugar_version, $sugar_config, $timedate, $theme;;
+    function process()
+    {
+        global $current_language, $app_strings, $sugar_version, $sugar_config, $timedate, $theme;
+        ;
         $module_strings = return_module_language($current_language, $this->module);
 
         $this->ss->assign('SUGAR_VERSION', $sugar_version);
@@ -84,15 +93,16 @@ class EditView {
         $this->ss->assign('MOD', $module_strings);
     }
 
-
     /**
      * Displays the template
      *
      * @return string HTML of parsed template
      */
-    function display() {
+    function display()
+    {
         return $this->ss->fetch($this->template);
     }
 
 }
+
 ?>

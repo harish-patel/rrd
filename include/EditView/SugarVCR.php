@@ -1,5 +1,6 @@
 <?php
-/*********************************************************************************
+
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -32,51 +33,58 @@
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
- define('VCREND', '50');
- define('VCRSTART', '10');
- /**
-  * @api
-  */
- class SugarVCR{
+define('VCREND', '50');
+define('VCRSTART', '10');
 
- 	/**
- 	 * records the query in the session for later retrieval
- 	 */
- 	function store($module, $query){
- 		$_SESSION[$module .'2_QUERY'] = $query;
- 	}
+/**
+ * @api
+ */
+class SugarVCR
+{
 
- 	/**
- 	 * This function retrieves a query from the session
- 	 */
- 	function retrieve($module){
- 		return (!empty($_SESSION[$module .'2_QUERY']) ? $_SESSION[$module .'2_QUERY'] : '');
- 	}
+    /**
+     * records the query in the session for later retrieval
+     */
+    function store($module, $query)
+    {
+        $_SESSION[$module . '2_QUERY'] = $query;
+    }
 
- 	/**
- 	 * return the start, prev, next, end
- 	 */
- 	function play($module, $offset){
- 		//given some global offset try to determine if we have this
- 		//in our array.
- 		$ids = array();
- 		if(!empty($_SESSION[$module.'QUERY_ARRAY']))
- 			$ids = $_SESSION[$module.'QUERY_ARRAY'];
- 		if(empty($ids[$offset]) || empty($ids[$offset+1]) || empty($ids[$offset-1]))
- 			$ids = SugarVCR::record($module, $offset);
- 		$menu = array();
- 		if(!empty($ids[$offset])){
- 			//return the control given this id
- 			$menu['PREV'] = ($offset > 1) ? $ids[$offset-1] : '';
- 			$menu['CURRENT'] = $ids[$offset];
- 			$menu['NEXT'] = !empty($ids[$offset+1]) ? $ids[$offset+1] : '';
- 		}
- 		return $menu;
- 	}
+    /**
+     * This function retrieves a query from the session
+     */
+    function retrieve($module)
+    {
+        return (!empty($_SESSION[$module . '2_QUERY']) ? $_SESSION[$module . '2_QUERY'] : '');
+    }
 
-    function menu($module, $offset, $isAuditEnabled, $saveAndContinue = false ){
+    /**
+     * return the start, prev, next, end
+     */
+    function play($module, $offset)
+    {
+        //given some global offset try to determine if we have this
+        //in our array.
+        $ids = array();
+        if (!empty($_SESSION[$module . 'QUERY_ARRAY']))
+            $ids = $_SESSION[$module . 'QUERY_ARRAY'];
+        if (empty($ids[$offset]) || empty($ids[$offset + 1]) || empty($ids[$offset - 1]))
+            $ids = SugarVCR::record($module, $offset);
+        $menu = array();
+        if (!empty($ids[$offset]))
+        {
+            //return the control given this id
+            $menu['PREV'] = ($offset > 1) ? $ids[$offset - 1] : '';
+            $menu['CURRENT'] = $ids[$offset];
+            $menu['NEXT'] = !empty($ids[$offset + 1]) ? $ids[$offset + 1] : '';
+        }
+        return $menu;
+    }
+
+    function menu($module, $offset, $isAuditEnabled, $saveAndContinue = false)
+    {
         $html_text = "";
         if ($offset < 0)
         {
@@ -91,7 +99,7 @@
         if (!empty($_REQUEST['record']) and !empty($stored_vcr_query) and isset($_REQUEST['offset']) and (empty($_REQUEST['isDuplicate']) or $_REQUEST['isDuplicate'] == 'false'))
         {
             //syncing with display offset;
-            $offset ++;
+            $offset++;
             $action = (!empty($_REQUEST['action']) ? $_REQUEST['action'] : 'EditView');
 
             $menu = SugarVCR::play($module, $offset);
@@ -131,8 +139,8 @@
             {
                 $ss->assign('total', $_SESSION[$module . 'total']);
                 if (
-                    !empty($GLOBALS['sugar_config']['disable_count_query'])
-                    && (($_SESSION[$module. 'total']-1) % $GLOBALS['sugar_config']['list_max_entries_per_page'] == 0)
+                        !empty($GLOBALS['sugar_config']['disable_count_query'])
+                        && (($_SESSION[$module . 'total'] - 1) % $GLOBALS['sugar_config']['list_max_entries_per_page'] == 0)
                 )
                 {
                     $ss->assign('plus', '+');
@@ -151,41 +159,47 @@
         return $html_text;
     }
 
- 	function record($module, $offset){
- 		$GLOBALS['log']->debug('SUGARVCR is recording more records');
- 		$start = max(0, $offset - VCRSTART);
- 		$index = $start;
-	    $db = DBManagerFactory::getInstance();
+    function record($module, $offset)
+    {
+        $GLOBALS['log']->debug('SUGARVCR is recording more records');
+        $start = max(0, $offset - VCRSTART);
+        $index = $start;
+        $db = DBManagerFactory::getInstance();
 
- 		$result = $db->limitQuery(SugarVCR::retrieve($module),$start,($offset+VCREND),false);
- 		$index++;
+        $result = $db->limitQuery(SugarVCR::retrieve($module), $start, ($offset + VCREND), false);
+        $index++;
 
- 		$ids = array();
- 		while(($row = $db->fetchByAssoc($result)) != null){
- 			$ids[$index] = $row['id'];
- 			$index++;
- 		}
- 		//now that we have the array of ids, store this in the session
- 		$_SESSION[$module.'QUERY_ARRAY'] = $ids;
- 		return $ids;
- 	}
+        $ids = array();
+        while (($row = $db->fetchByAssoc($result)) != null)
+        {
+            $ids[$index] = $row['id'];
+            $index++;
+        }
+        //now that we have the array of ids, store this in the session
+        $_SESSION[$module . 'QUERY_ARRAY'] = $ids;
+        return $ids;
+    }
 
- 	function recordIDs($module, $rids, $offset, $totalCount){
- 		$index = $offset;
- 		$index++;
- 		$ids = array();
- 		foreach($rids as $id){
- 			$ids[$index] = $id;
- 			$index++;
- 		}
- 		//now that we have the array of ids, store this in the session
- 		$_SESSION[$module.'QUERY_ARRAY'] = $ids;
- 		$_SESSION[$module.'total'] = $totalCount;
- 	}
+    function recordIDs($module, $rids, $offset, $totalCount)
+    {
+        $index = $offset;
+        $index++;
+        $ids = array();
+        foreach ($rids as $id)
+        {
+            $ids[$index] = $id;
+            $index++;
+        }
+        //now that we have the array of ids, store this in the session
+        $_SESSION[$module . 'QUERY_ARRAY'] = $ids;
+        $_SESSION[$module . 'total'] = $totalCount;
+    }
 
- 	function erase($module){
- 		unset($_SESSION[$module. 'QUERY_ARRAY']);
- 	}
+    function erase($module)
+    {
+        unset($_SESSION[$module . 'QUERY_ARRAY']);
+    }
 
- }
+}
+
 ?>
