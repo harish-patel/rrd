@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,7 +35,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 /**
  * Tab representation
@@ -41,38 +43,41 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  */
 class SugarTab
 {
-    function SugarTab($type='singletabmenu')
+
+    function SugarTab($type = 'singletabmenu')
     {
         $this->type = $type;
         $this->ss = new Sugar_Smarty();
     }
 
-    function setup($mainTabs, $otherTabs=array(), $subTabs=array(), $selected_group='All')
+    function setup($mainTabs, $otherTabs = array(), $subTabs = array(), $selected_group = 'All')
     {
         global $sugar_version, $sugar_config, $current_user;
 
         $max_tabs = $current_user->getPreference('max_tabs');
-        if(!isset($max_tabs) || $max_tabs <= 0) $max_tabs = $GLOBALS['sugar_config']['default_max_tabs'];
-				
-				$key_all = translate('LBL_TABGROUP_ALL');
-				if ($selected_group == 'All') {
-						$selected_group = $key_all;
-				}
+        if (!isset($max_tabs) || $max_tabs <= 0)
+            $max_tabs = $GLOBALS['sugar_config']['default_max_tabs'];
 
-        $moreTabs = array_slice($mainTabs,$max_tabs);
-        /* If the current tab is in the 'More' menu, move it into the visible menu. */
-        if(!empty($moreTabs[$selected_group]))
+        $key_all = translate('LBL_TABGROUP_ALL');
+        if ($selected_group == 'All')
         {
-        	$temp = array($selected_group => $mainTabs[$selected_group]);
+            $selected_group = $key_all;
+        }
+
+        $moreTabs = array_slice($mainTabs, $max_tabs);
+        /* If the current tab is in the 'More' menu, move it into the visible menu. */
+        if (!empty($moreTabs[$selected_group]))
+        {
+            $temp = array($selected_group => $mainTabs[$selected_group]);
             unset($mainTabs[$selected_group]);
-            array_splice($mainTabs, $max_tabs-1, 0, $temp);
+            array_splice($mainTabs, $max_tabs - 1, 0, $temp);
         }
 
         $subpanelTitles = array();
 
-        if(isset($otherTabs[$key_all]) && isset($otherTabs[$key_all]['tabs']))
+        if (isset($otherTabs[$key_all]) && isset($otherTabs[$key_all]['tabs']))
         {
-            foreach($otherTabs[$key_all]['tabs'] as $subtab)
+            foreach ($otherTabs[$key_all]['tabs'] as $subtab)
             {
                 $subpanelTitles[$subtab['key']] = $subtab['label'];
             }
@@ -85,10 +90,10 @@ class SugarTab
         $this->ss->assign('subpanelTitlesJSON', json_encode($subpanelTitles));
         $this->ss->assign('startSubPanel', $selected_group);
         $this->ss->assign('sugarVersionJsStr', "?s=$sugar_version&c={$sugar_config['js_custom_version']}");
-        if(!empty($mainTabs))
+        if (!empty($mainTabs))
         {
             $mtak = array_keys($mainTabs);
-            $this->ss->assign('moreTab', $mainTabs[$mtak[min(count($mtak)-1, $max_tabs-1)]]['label']);
+            $this->ss->assign('moreTab', $mainTabs[$mtak[min(count($mtak) - 1, $max_tabs - 1)]]['label']);
         }
     }
 
@@ -99,10 +104,9 @@ class SugarTab
 
     function display()
     {
-       $this->ss->display('include/SubPanel/tpls/' . $this->type . '.tpl');
+        $this->ss->display('include/SubPanel/tpls/' . $this->type . '.tpl');
     }
+
 }
-
-
 
 ?>

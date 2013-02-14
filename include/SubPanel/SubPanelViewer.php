@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,7 +35,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 
@@ -42,28 +44,28 @@ global $beanList;
 global $beanFiles;
 
 
-if(empty($_REQUEST['module']))
+if (empty($_REQUEST['module']))
 {
-	die("'module' was not defined");
+    die("'module' was not defined");
 }
 
-if(empty($_REQUEST['record']))
+if (empty($_REQUEST['record']))
 {
-	die("'record' was not defined");
+    die("'record' was not defined");
 }
 
-if(!isset($beanList[$_REQUEST['module']]))
+if (!isset($beanList[$_REQUEST['module']]))
 {
-	die("'".$_REQUEST['module']."' is not defined in \$beanList");
+    die("'" . $_REQUEST['module'] . "' is not defined in \$beanList");
 }
 
 $subpanel = $_REQUEST['subpanel'];
 $record = $_REQUEST['record'];
 $module = $_REQUEST['module'];
 
-if(empty($_REQUEST['inline']))
+if (empty($_REQUEST['inline']))
 {
-	insert_popup_header($theme);
+    insert_popup_header($theme);
 }
 
 //require_once('include/SubPanel/SubPanelDefinitions.php');
@@ -73,20 +75,20 @@ if(empty($_REQUEST['inline']))
 
 include('include/SubPanel/SubPanel.php');
 $layout_def_key = '';
-if(!empty($_REQUEST['layout_def_key'])){
-	$layout_def_key = $_REQUEST['layout_def_key'];
+if (!empty($_REQUEST['layout_def_key']))
+{
+    $layout_def_key = $_REQUEST['layout_def_key'];
 }
 
-$subpanel_object = new SubPanel($module, $record, $subpanel,null, $layout_def_key);
+$subpanel_object = new SubPanel($module, $record, $subpanel, null, $layout_def_key);
 
 $subpanel_object->setTemplateFile('include/SubPanel/SubPanelDynamic.html');
-echo (empty($_REQUEST['inline']))?$subpanel_object->get_buttons():'' ;  
+echo (empty($_REQUEST['inline'])) ? $subpanel_object->get_buttons() : '';
 
 $subpanel_object->display();
 
-if(empty($_REQUEST['inline']))
+if (empty($_REQUEST['inline']))
 {
-	insert_popup_footer($theme);
+    insert_popup_footer($theme);
 }
-
 ?>

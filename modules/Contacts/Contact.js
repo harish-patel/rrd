@@ -40,16 +40,14 @@ function set_campaignlog_and_save_background(popup_reply_data)
     var query_array=new Array();
     if(name_to_value_array!='undefined'){
         for(var the_key in name_to_value_array)
-
         {
-                if(the_key=='toJSON')
-
-                {}
-                else
-                {
-                    query_array.push(the_key+'='+name_to_value_array[the_key]);
-                }
+            if(the_key=='toJSON')
+            {}
+            else
+            {
+                query_array.push(the_key+'='+name_to_value_array[the_key]);
             }
+        }
     }
     var selection_list;
     if(popup_reply_data.selection_list)
