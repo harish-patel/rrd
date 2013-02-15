@@ -107,17 +107,6 @@ array (
             'customCode' => '<select name="related_doc_rev_id" id="related_doc_rev_id" {$RELATED_DOCUMENT_REVISION_DISABLED}>{$RELATED_DOCUMENT_REVISION_OPTIONS}</select>',
           ),
         ),
-        7 => 
-        array (
-          0 => 
-          array (
-            'name' => 'ft_fileupload_documents_name',
-          ),
-          1 => 
-          array (
-            'name' => 'ft_fileupload_documents_name',
-          ),
-        ),
       ),
       'LBL_PANEL_ASSIGNMENT' => 
       array (

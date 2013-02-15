@@ -100,17 +100,6 @@ array (
             'name' => 'assigned_user_name',
             'label' => 'LBL_ASSIGNED_TO_NAME',
           ),
-          1 => 
-          array (
-            'name' => 'ft_fileupload_documents_name',
-          ),
-        ),
-        8 => 
-        array (
-          0 => 
-          array (
-            'name' => 'ft_fileupload_documents_name',
-          ),
         ),
       ),
       'LBL_REVISIONS_PANEL' => 

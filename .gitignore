@@ -2,6 +2,7 @@
 # Ignore custom .htaccess stuff.
 /.htaccess
 # Ignore large parts of the annoying cache directory without breaking things.
+cache/upgrades
 cache/modules/*
 cache/csv/*
 cache/dashlets/*
