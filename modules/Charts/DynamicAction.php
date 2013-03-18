@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,22 +35,25 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
-if(isset($_GET['DynamicAction']) && $_GET['DynamicAction'] == "saveImage") {
-	$filename = pathinfo($_POST['filename'], PATHINFO_BASENAME);
-	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	if(!in_array(strtolower($ext), array('jpg', 'png', 'jpeg'))) {
-	    return false;
-	}
-	$image = str_replace(" ", "+", $_POST["imageStr"]);
-	$data = substr($image, strpos($image, ","));
-	$filepath = sugar_cached("images/$filename");
+if (isset($_GET['DynamicAction']) && $_GET['DynamicAction'] == "saveImage")
+{
+    $filename = pathinfo($_POST['filename'], PATHINFO_BASENAME);
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if (!in_array(strtolower($ext), array('jpg', 'png', 'jpeg')))
+    {
+        return false;
+    }
+    $image = str_replace(" ", "+", $_POST["imageStr"]);
+    $data = substr($image, strpos($image, ","));
+    $filepath = sugar_cached("images/$filename");
 
-	file_put_contents($filepath, base64_decode($data));
-	if(!verify_uploaded_image($filepath)) {
-	    unlink($filepath);
-	    return false;
-	}
+    file_put_contents($filepath, base64_decode($data));
+    if (!verify_uploaded_image($filepath))
+    {
+        unlink($filepath);
+        return false;
+    }
 }

@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,21 +35,21 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
 
 
 
 $dashletData['OpportunitiesByLeadSourceByOutcomeDashlet']['searchFields'] = array(
-        'lsbo_lead_sources' => array(
-                'name'  => 'lsbo_lead_sources',
-                'vname' => 'LBL_LEAD_SOURCES',
-                'type'  => 'enum',
-            ),
-        'lsbo_ids' => array(
-                'name'  => 'lsbo_ids',
-                'vname' => 'LBL_USERS',
-                'type'  => 'user_name',
-            ),
-        );
+    'lsbo_lead_sources' => array(
+        'name' => 'lsbo_lead_sources',
+        'vname' => 'LBL_LEAD_SOURCES',
+        'type' => 'enum',
+    ),
+    'lsbo_ids' => array(
+        'name' => 'lsbo_ids',
+        'vname' => 'LBL_USERS',
+        'type' => 'user_name',
+    ),
+);
 ?>

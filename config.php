@@ -338,7 +338,7 @@ $sugar_config = array (
     12 => 'htm',
   ),
   'upload_dir' => 'upload/',
-  'upload_maxsize' => 30000000,
+  'upload_maxsize' => 120000000,
   'use_common_ml_dir' => false,
   'use_real_names' => true,
   'vcal_time' => '2',

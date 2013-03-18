@@ -1,6 +1,8 @@
 <?php
-if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
-/*********************************************************************************
+
+if (!defined('sugarEntry') || !sugarEntry)
+    die('Not A Valid Entry Point');
+/* * *******************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2012 SugarCRM Inc.
  * 
@@ -33,23 +35,23 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
  * SugarCRM" logo. If the display of the logo is not reasonably feasible for
  * technical reasons, the Appropriate Legal Notices must display the words
  * "Powered by SugarCRM".
- ********************************************************************************/
+ * ****************************************************************************** */
 
-/*********************************************************************************
+/* * *******************************************************************************
 
  * Description:  Defines the English language pack for the base application.
  * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.
  * All Rights Reserved.
  * Contributor(s): ______________________________________..
- ********************************************************************************/
+ * ****************************************************************************** */
 
-$mod_strings = array (
+$mod_strings = array(
     'ERR_NO_OPPS' => 'Please create some Opportunities to see Opportunity graphs.',
     'LBL_ALL_OPPORTUNITIES' => 'Total amount of all opportunities is ',
     'LBL_CHART_TYPE' => 'Chart Type:',
     'LBL_CREATED_ON' => 'Last run on ',
-	'LBL_CLOSE_DATE_START' => 'Expected Close Date - From:',
-	'LBL_CLOSE_DATE_END'   => 'Expected Close Date - To:',
+    'LBL_CLOSE_DATE_START' => 'Expected Close Date - From:',
+    'LBL_CLOSE_DATE_END' => 'Expected Close Date - To:',
     'LBL_DATE_END' => 'End Date:',
     'LBL_DATE_RANGE_TO' => 'to',
     'LBL_DATE_RANGE' => 'Date range is',
@@ -66,7 +68,7 @@ $mod_strings = array (
     'LBL_MONTH_BY_OUTCOME_DESC' => 'Shows cumulative opportunity amounts by month by outcome for selected users where the expected closed date is within the specified date range.  Outcome is based on whether the sales stage is Closed Won, Closed Lost, or any other value.',
     'LBL_NUMBER_OF_OPPS' => 'Number of Opportunities',
     'LBL_OPP_SIZE' => 'Opportunity size in',
-    'LBL_OPP_THOUSANDS'=> 'K',
+    'LBL_OPP_THOUSANDS' => 'K',
     'LBL_OPPS_IN_LEAD_SOURCE' => 'opportunities where lead source is',
     'LBL_OPPS_IN_STAGE' => ' where sales stage is',
     'LBL_OPPS_OUTCOME' => ' where outcome is',
@@ -95,10 +97,7 @@ $mod_strings = array (
     'LNK_NEW_QUOTE' => 'Create Quote',
     'LNK_NEW_TASK' => 'Create Task',
     'NTC_NO_LEGENDS' => 'None',
-    
     'LBL_TITLE' => 'Title: ',
     'LBL_MY_MODULES_USED_SIZE' => 'Access Count',
 );
-
-
 ?>
