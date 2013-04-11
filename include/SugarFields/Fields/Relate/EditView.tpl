@@ -52,7 +52,7 @@
                 400, 
                 "{{$displayParams.initial_filter}}", 
                 true, 
-                false, 
+                true, 
             {{$displayParams.popupData}}, 
                 "single", 
                 true

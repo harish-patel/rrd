@@ -219,7 +219,7 @@
                 {{elseif $fields[$colData.field.name]}}
                 {counter name="panelFieldCount"}
                 {{$colData.displayParams}}
-                {{sugar_field parentFieldArray='fields'  accesskey=$ACCKEY tabindex=$tabindex vardef=$fields[$colData.field.name] displayType='EditView' displayParams=$colData.field.displayParams typeOverride=$colData.field.type formName=$form_name}}
+                {{sugar_field parentFieldArray='fields' accesskey=$ACCKEY tabindex=$tabindex vardef=$fields[$colData.field.name] displayType='EditView' displayParams=$colData.field.displayParams typeOverride=$colData.field.type formName=$form_name}}
                 {{/if}}
                 {{if !empty($colData.field.customCode) && !empty($colData.field.customCodeRenderField)}}
                 {counter name="panelFieldCount"}
